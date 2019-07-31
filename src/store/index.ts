@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import createRootReducer from '../reducers';
 import redirect from '../middlewares/redirect';
+import callAsyncMiddleware from '../middlewares/callAsyncMiddleware';
 
 export const history = createBrowserHistory();
 
@@ -15,7 +16,7 @@ export default (preloadedState = {}) =>
     createStore(
         rootReducer,
         preloadedState,
-        composeEnhancers(applyMiddleware(routerMiddleware(history), thunk, redirect)),
+        composeEnhancers(applyMiddleware(routerMiddleware(history), thunk, redirect, callAsyncMiddleware)),
     );
 
 export type AppState = ReturnType<typeof rootReducer>;
