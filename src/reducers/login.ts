@@ -1,5 +1,4 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../containers/Login/const';
-import {Roles, Error} from '../helpers/checkAuth';
 import {LOG_OUT} from '../containers/App/const';
 import {
     LoginSuccessAction,
@@ -7,11 +6,12 @@ import {
     LoginErrorAction,
     LogOutAction,
 } from '../containers/Login/actions/interfaces';
+import {Roles, ErrorMessage} from '../typings';
 
 interface LoginState {
     isAuthenticated: boolean;
     isLoading: boolean;
-    error: Error | boolean;
+    error: ErrorMessage | boolean;
     login: string;
     role: Roles | null;
 }

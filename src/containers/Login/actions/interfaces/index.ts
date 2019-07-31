@@ -1,6 +1,6 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../../const';
 import {LOG_OUT} from '../../../App/const';
-import {Error, Roles} from '../../../../helpers/checkAuth';
+import {ErrorMessage, Roles} from '../../../../typings';
 
 export interface UserData {
     login: string | null;
@@ -21,7 +21,7 @@ export interface LoginSuccessAction {
 
 export interface LoginErrorAction {
     type: typeof LOGIN_ERROR;
-    payload: Error;
+    payload: ErrorMessage;
 }
 
 export interface LogOutAction {

@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, AnyAction} from 'redux';
 
+import {ErrorMessage} from '../../typings';
 import {onLogin} from './actions/loginActions';
 import {AppState} from '../../store';
-import {Error} from '../../helpers/checkAuth';
 import Spinner from '../../components/Spinner';
 import s from './styles/Login.module.less';
 
@@ -13,7 +13,7 @@ const INITIAL_PASSWORD = '';
 
 interface LoginProps {
     isLoading: boolean;
-    error: Error | boolean;
+    error: ErrorMessage | boolean;
     onLogin: (login: string, password: string) => (dispatch: Dispatch<AnyAction>) => Promise<void>;
 }
 

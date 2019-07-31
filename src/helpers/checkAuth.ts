@@ -1,33 +1,5 @@
+import {User, Roles, ErrorMessage, AuthData, AuthResponse} from '../typings';
 // import jwt from 'jsonwebtoken';
-
-export enum Roles {
-    USER = 'USER',
-    ADMIN = 'ADMIN',
-}
-
-export enum Error {
-    INVALID = 'Invalid login or password',
-}
-
-interface AuthData {
-    password?: string;
-    login?: string;
-    authToken?: string;
-}
-
-interface User {
-    login: string;
-    password: string;
-    token: string;
-    role: Roles;
-}
-
-export interface AuthResponse {
-    error: false | Error;
-    login: string | null;
-    token: string | null;
-    role: Roles | null;
-}
 
 const data: User[] = [
     {
@@ -63,7 +35,7 @@ const checkAuth = async ({authToken, login, password}: AuthData): Promise<AuthRe
     }
 
     return {
-        error: Error.INVALID,
+        error: ErrorMessage.INVALID,
         login: null,
         token: null,
         role: null,
