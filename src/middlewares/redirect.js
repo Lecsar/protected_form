@@ -1,5 +1,5 @@
 import { ROUTING } from '../const';
-import { history } from '../store/configureStore';
+import { history } from '../store';
 
 const redirect = () => next => (action) => {
   if (action.type === ROUTING) {

@@ -2,6 +2,11 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../../const';
 import {LOG_OUT} from '../../../App/const';
 import {Error, Roles} from '../../../../helpers/checkAuth';
 
+export interface UserData {
+    login: string | null;
+    role: Roles | null;
+}
+
 export interface LoginRequestAction {
     type: typeof LOGIN_REQUEST;
 }

@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators, Dispatch} from 'redux';
+import {bindActionCreators, Dispatch, AnyAction} from 'redux';
 
 import {onLogin} from './actions/loginActions';
-
+import {AppState} from '../../store';
+import {Error} from '../../helpers/checkAuth';
 import Spinner from '../../components/Spinner';
-
 import s from './styles/Login.module.less';
-import {AppState} from '../../store/configureStore';
 
 const INITIAL_LOGIN = '';
 const INITIAL_PASSWORD = '';
 
-const Login = ({isLoading = false, error = false, onLogin}: any) => {
+interface LoginProps {
+    isLoading: boolean;
+    error: Error | boolean;
+    onLogin: (login: string, password: string) => (dispatch: Dispatch<AnyAction>) => Promise<void>;
+}
+
+const Login = ({isLoading = false, error = false, onLogin}: LoginProps) => {
     const [login, setLogin] = useState(INITIAL_LOGIN);
     const [password, setPassword] = useState(INITIAL_PASSWORD);
 

@@ -23,7 +23,7 @@ const App = ({onLogOut}: any) => {
     );
 };
 
-const mapStateToProps = () => ({});
+// const mapStateToProps = () => ({});
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({onLogOut}, dispatch);
 
 export default connect(

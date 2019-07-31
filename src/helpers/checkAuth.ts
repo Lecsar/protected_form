@@ -12,7 +12,7 @@ export enum Error {
 interface AuthData {
     password?: string;
     login?: string;
-    token?: string;
+    authToken?: string;
 }
 
 interface User {
@@ -22,10 +22,11 @@ interface User {
     role: Roles;
 }
 
-export interface UserData {
-    error: false;
-    token: string;
-    role: Roles;
+export interface AuthResponse {
+    error: false | Error;
+    login: string | null;
+    token: string | null;
+    role: Roles | null;
 }
 
 const data: User[] = [
@@ -43,12 +44,12 @@ const tokenSearchLambda = (token: string) => (u: User) => u.token === token;
 const loginSearchLambda = (login?: string, password?: string) => (user: User) =>
     user.login === login && user.password === password;
 
-const checkAuth = ({token, login, password}: AuthData): UserData | {error: Error} => {
-    const lambdaForSearch = token ? tokenSearchLambda(token) : loginSearchLambda(login, password);
+const checkAuth = async ({authToken, login, password}: AuthData): Promise<AuthResponse> => {
+    const lambdaForSearch = authToken ? tokenSearchLambda(authToken) : loginSearchLambda(login, password);
     const findedUser = data.find(lambdaForSearch);
 
     if (findedUser) {
-        const {password, login, ...userData} = findedUser;
+        const {password, ...userData} = findedUser;
 
         // if (!findedUser.token) {
         // const token = jwt.sign(findedUser, PRIVATE_KEY);
@@ -63,6 +64,9 @@ const checkAuth = ({token, login, password}: AuthData): UserData | {error: Error
 
     return {
         error: Error.INVALID,
+        login: null,
+        token: null,
+        role: null,
     };
 };
 
