@@ -2,11 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {TypeOfConnect} from '../../typings';
 import {onLogOut} from './actions/appActions';
 
 import s from './styles/App.module.less';
 
-const App = ({onLogOut}: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({onLogOut}, dispatch);
+const storeEnhancer = connect(
+    null,
+    mapDispatchToProps,
+);
+
+type AppProps = {} & TypeOfConnect<typeof storeEnhancer>;
+
+const App = ({onLogOut}: AppProps) => {
     return (
         <div className={s.App}>
             <header className={s.header}>
@@ -23,10 +32,4 @@ const App = ({onLogOut}: any) => {
     );
 };
 
-// const mapStateToProps = () => ({});
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({onLogOut}, dispatch);
-
-export default connect(
-    null,
-    mapDispatchToProps,
-)(App);
+export default storeEnhancer(App);

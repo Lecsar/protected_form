@@ -2,7 +2,7 @@ import {Dispatch} from 'redux';
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../const';
 import {ROUTING, AUTH_TOKEN} from '../../../const';
 import checkAuth from '../../../helpers/checkAuth';
-import {UserData} from './interfaces';
+import {UserData} from '../../../typings';
 
 export const onLogin = (login: string, password: string) => async (dispatch: Dispatch) => {
     dispatch({type: LOGIN_REQUEST});
@@ -25,5 +25,3 @@ export const onSuccessLogin = (payload: UserData) => ({
     type: LOGIN_SUCCESS,
     payload,
 });
-
-export const test = () => false;

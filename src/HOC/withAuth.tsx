@@ -2,24 +2,24 @@ import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {Redirect} from 'react-router';
+import {TypeOfConnect, UserData} from '../typings';
 import checkAuth from '../helpers/checkAuth';
 import {onSuccessLogin} from '../containers/Login/actions/loginActions';
 import {AppState} from '../store';
 import {AUTH_TOKEN} from '../const';
-import {UserData} from '../containers/Login/actions/interfaces';
 
 const mapStateToProps = ({login: isAuthenticated}: AppState) => ({...isAuthenticated});
-
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({onSuccessLogin}, dispatch);
+const storeEnhancer = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+);
+
+type AuthenticatedComponentProps = {} & TypeOfConnect<typeof storeEnhancer>;
 
 const URL_LOGIN_PAGE = '/login';
 
 type OnSuccessLogin = (userData: UserData) => {type: string; payload: UserData};
-
-interface AuthenticatedComponentProps {
-    isAuthenticated: boolean;
-    onSuccessLogin: OnSuccessLogin;
-}
 
 const autoLogin = (onSuccessLogin: OnSuccessLogin, toggleLoading: () => void) => async () => {
     const authToken = localStorage.getItem(AUTH_TOKEN)!;
@@ -55,10 +55,7 @@ const withAuth = (WrappedComponent: any) => {
         return <Redirect to={URL_LOGIN_PAGE} />;
     };
 
-    return connect(
-        mapStateToProps,
-        mapDispatchToProps,
-    )(AuthenticatedComponent);
+    return storeEnhancer(AuthenticatedComponent);
 };
 
 export default withAuth;

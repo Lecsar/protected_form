@@ -1,3 +1,15 @@
+/* eslint-disable */
+import {InferableComponentEnhancerWithProps} from 'react-redux';
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../containers/Login/const';
+import {LOG_OUT} from '../containers/App/const';
+
+export type TypeOfConnect<T> = T extends InferableComponentEnhancerWithProps<infer Props, infer _> ? Props : never;
+
+export interface UserData {
+    login: string | null;
+    role: Roles | null;
+}
+
 export enum Roles {
     USER = 'USER',
     ADMIN = 'ADMIN',
