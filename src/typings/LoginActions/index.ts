@@ -24,4 +24,8 @@ export interface LogOutAction extends Action {
     type: typeof LOG_OUT;
 }
 
-export type LoginAction = LoginRequestAction | LoginSuccessAction | LoginErrorAction | LogOutAction;
+export type LoginAction = LoginRequestAction | LoginSuccessAction | LoginErrorAction;
+
+type LoginPageAction = LoginAction | LogOutAction;
+
+export default LoginPageAction;
