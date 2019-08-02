@@ -19,7 +19,7 @@ interface LoginState {
 }
 
 type LoginStateHandlerProps = StateHandlerMap<LoginState> & {
-    setState: (propName: PropName, value: string) => Partial<LoginState>;
+    setValueInInput: (propName: PropName, value: string) => Partial<LoginState>;
 };
 interface Handlers {
     onBtnClick: () => void;
@@ -40,7 +40,7 @@ type LoginProps = Outter & LoginState & LoginStateHandlerProps & Handlers & Type
 const enhanceStateHandlers = withStateHandlers<LoginState, LoginStateHandlerProps>(
     {login: '', password: ''},
     {
-        setState: () => (propName: PropName, value: string) => ({
+        setValueInInput: () => (propName: PropName, value: string) => ({
             [propName]: value,
         }),
     },
@@ -60,9 +60,8 @@ const enhance = compose<LoginProps, Outter>(
     enhanceHandlers,
 );
 
-const Login = (props: LoginProps) => {
-    const {login, password, setState, isLoading, error, onBtnClick} = props;
-    const setValue = useCallback((propName: PropName) => (value: string) => setState(propName, value), [setState]);
+const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}: LoginProps) => {
+    const setValue = useCallback((propName: PropName) => (value: string) => setValueInInput(propName, value), [setValueInInput]);
 
     useEffect(() => {
         if (error && !isLoading) {

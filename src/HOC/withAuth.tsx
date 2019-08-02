@@ -39,7 +39,7 @@ const withAuth = (WrappedComponent: any) => {
 
         useEffect(() => {
             if (!isAuthenticated) {
-                setTimeout(autoLogin(onSuccessLogin, toggleLoading), 500);
+                setTimeout(autoLogin(onSuccessLogin, toggleLoading), 200);
             }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
@@ -49,7 +49,7 @@ const withAuth = (WrappedComponent: any) => {
         }
 
         if (isLoading) {
-            return <h1>Загрузка ....</h1>;
+            return <h1>Авторизация ...</h1>;
         }
 
         return <Redirect to={URL_LOGIN_PAGE} />;

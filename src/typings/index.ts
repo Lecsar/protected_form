@@ -35,3 +35,10 @@ export interface AuthResponse {
     token: string | null;
     role: Roles | null;
 }
+
+export interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}

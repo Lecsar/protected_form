@@ -2,6 +2,7 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../containers/Login/con
 import {LOG_OUT} from '../containers/App/const';
 import {Roles, ErrorMessage} from '../typings';
 import LoginAction from '../typings/LoginActions';
+import {LogOutAction} from '../typings/AppActions';
 
 interface LoginState {
     isAuthenticated: boolean;
@@ -19,7 +20,9 @@ const initialState: LoginState = {
     role: null,
 };
 
-export default (state = initialState, action: LoginAction): LoginState => {
+type Action = LoginAction | LogOutAction;
+
+export default (state = initialState, action: Action): LoginState => {
     switch (action.type) {
         case LOGIN_REQUEST:
             return {...state, isLoading: true};
