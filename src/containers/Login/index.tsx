@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, ChangeEvent, SyntheticEvent} from 'react';
+import React, {useEffect, useCallback, ChangeEvent} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {compose, withStateHandlers, StateHandlerMap, withHandlers} from 'recompose';
@@ -64,9 +64,10 @@ const enhance = compose<LoginProps, Outter>(
 const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}: LoginProps) => {
     const styles = useStyles();
 
-    const setValue = useCallback((propName: PropName) => ({target: {value}}: any) => setValueInInput(propName, value), [
-        setValueInInput,
-    ]);
+    const setValue = useCallback(
+        (propName: PropName) => ({target: {value}}: ChangeEvent<HTMLInputElement>) => setValueInInput(propName, value),
+        [setValueInInput],
+    );
 
     const enter = ({keyCode}: React.KeyboardEvent<HTMLInputElement>) => {
         if (keyCode === 13) {

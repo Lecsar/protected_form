@@ -12,7 +12,7 @@ interface DropzoneProps {
 const Dropzone = ({disabled, onDropFile}: DropzoneProps) => {
     const onDrop = useCallback(acceptedFiles => {
         onDropFile(acceptedFiles);
-    }, []);
+    }, [onDropFile]);
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, disabled});
 
     return (

@@ -1,8 +1,7 @@
-import React, {memo} from 'react';
+import React from 'react';
 import Input, {InputProps} from '@material-ui/core/Input';
 import {makeStyles, createStyles} from '@material-ui/styles';
 import {FormControlLabel} from '@material-ui/core';
-import {FormControlLabelProps} from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles(
     createStyles({

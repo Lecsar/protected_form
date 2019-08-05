@@ -21,5 +21,6 @@ module.exports = {
         'import/no-unresolved': [false],
         'import/no-cycle': [false],
         'no-namespace': [false],
+        'react-hooks/exhaustive-deps': [false],
     },
 };
