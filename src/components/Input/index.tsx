@@ -1,13 +1,42 @@
-import React from 'react';
-import Input, {InputProps} from 'react-toolbox/lib/input';
-import {shouldUpdate} from 'recompose';
+import React, {memo} from 'react';
+import Input, {InputProps} from '@material-ui/core/Input';
+import {makeStyles, createStyles} from '@material-ui/styles';
+import {FormControlLabel} from '@material-ui/core';
+import {FormControlLabelProps} from '@material-ui/core/FormControlLabel';
 
-import styles from './input.module.less';
+const useStyles = makeStyles(
+    createStyles({
+        inputBlock: {
+            width: 300,
+            height: 50,
+        },
 
-const {input, ...theme} = styles;
+        input: {
+            fontSize: '2rem',
+        },
 
-const StyledInput = (props: InputProps) => <Input className={input} {...props} theme={{...theme}} />;
+        controlLabel: {
+            fontSize: '2rem',
+            marginRight: 20,
+        },
+    }),
+);
 
-const checkPropsChange = (props: InputProps, nextProps: InputProps) => nextProps.value !== props.value;
+const BaseInput = ({label, ...props}: InputProps & {label: string}) => {
+    const {inputBlock, controlLabel, ...classes} = useStyles();
 
-export default shouldUpdate(checkPropsChange)(StyledInput);
+    return (
+        <FormControlLabel
+            classes={{label: controlLabel}}
+            label={label}
+            labelPlacement="start"
+            control={<Input className={inputBlock} classes={classes} {...props} />}
+        />
+    );
+};
+
+// const areEqual = (prevProps: InputProps, nextProps: InputProps) => prevProps.value === nextProps.value;
+
+// export default memo(BaseInput, areEqual);
+
+export default BaseInput;

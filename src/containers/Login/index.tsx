@@ -1,15 +1,16 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect, useCallback, ChangeEvent, SyntheticEvent} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {compose, withStateHandlers, StateHandlerMap, withHandlers} from 'recompose';
+import Grid from '@material-ui/core/Grid';
 import Input from '../../components/Input';
-import Buttton from '../../components/Button';
+// import Buttton from '../../components/Button';
 
 import {TypeOfConnect} from '../../typings';
 import {onLogin} from './actions/loginActions';
 import {AppState} from '../../store';
-import Spinner from '../../components/Spinner';
-import s from './styles/Login.module.less';
+// import Spinner from '../../components/Spinner';
+import useStyles from './styles';
 
 type Outter = {};
 
@@ -61,27 +62,46 @@ const enhance = compose<LoginProps, Outter>(
 );
 
 const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}: LoginProps) => {
-    const setValue = useCallback((propName: PropName) => (value: string) => setValueInInput(propName, value), [setValueInInput]);
+    const styles = useStyles();
+
+    const setValue = useCallback((propName: PropName) => ({target: {value}}: any) => setValueInInput(propName, value), [
+        setValueInInput,
+    ]);
+
+    const enter = ({keyCode}: React.KeyboardEvent<HTMLInputElement>) => {
+        if (keyCode === 13) {
+            onBtnClick();
+        }
+    };
 
     useEffect(() => {
         if (error && !isLoading) {
-            setValue('password')('');
+            setValueInInput('password', '');
         }
     }, [isLoading, error, setValue]);
 
-    const isBtnDisabled = isLoading || !(login && password);
-    const isShowErrorLabel = error && !isLoading;
+    // const isBtnDisabled = isLoading || !(login && password);
+    // const isShowErrorLabel = error && !isLoading;
 
     return (
-        <main className={s.form}>
-            <Input type="text" label="Login" value={login} onChange={setValue('login')} maxLength={10} />
-            <Input type="password" label="Password" value={password} onChange={setValue('password')} maxLength={16} />
-            {isShowErrorLabel && <h3 className={s.error}>{error}</h3>}
-            <Buttton onClick={onBtnClick} disabled={isBtnDisabled} ripple>
+        <Grid container className={styles.root}>
+            <Grid direction="column" container justify="center" spacing={2}>
+                <Input label="Login" type="text" value={login} onChange={setValue('login')} />
+                <Input
+                    label="Password"
+                    type="password"
+                    value={password}
+                    onChange={setValue('password')}
+                    onKeyDown={enter}
+                />
+            </Grid>
+
+            {/* {isShowErrorLabel && <h3 className={s.error}>{error}</h3>} 
+             <Buttton onClick={onBtnClick} disabled={isBtnDisabled} ripple>
                 Войти
                 {isLoading && <Spinner className={s.center} />}
-            </Buttton>
-        </main>
+            </Buttton>  */}
+        </Grid>
     );
 };
 
