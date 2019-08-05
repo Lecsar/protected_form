@@ -10,6 +10,7 @@ import {TypeOfConnect} from '../../typings';
 import {onLogin} from './actions/loginActions';
 import {AppState} from '../../store';
 // import Spinner from '../../components/Spinner';
+import {ENTER_KEY_CODE} from '../../const';
 import useStyles from './styles';
 
 type Outter = {};
@@ -70,7 +71,7 @@ const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}:
     );
 
     const enter = ({keyCode}: React.KeyboardEvent<HTMLInputElement>) => {
-        if (keyCode === 13) {
+        if (keyCode === ENTER_KEY_CODE) {
             onBtnClick();
         }
     };
