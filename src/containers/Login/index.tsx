@@ -4,7 +4,7 @@ import {bindActionCreators, Dispatch} from 'redux';
 import {compose, withStateHandlers, StateHandlerMap, withHandlers} from 'recompose';
 import Grid from '@material-ui/core/Grid';
 import Input from '../../components/Input';
-// import Buttton from '../../components/Button';
+import Button from '../../components/Button';
 
 import {TypeOfConnect} from '../../typings';
 import {onLogin} from './actions/loginActions';
@@ -24,7 +24,7 @@ type LoginStateHandlerProps = StateHandlerMap<LoginState> & {
     setValueInInput: (propName: PropName, value: string) => Partial<LoginState>;
 };
 interface Handlers {
-    onBtnClick: () => void;
+    onClickLoginBtn: () => void;
 }
 
 type PropName = keyof LoginState;
@@ -49,7 +49,7 @@ const enhanceStateHandlers = withStateHandlers<LoginState, LoginStateHandlerProp
 );
 
 const enhanceHandlers = withHandlers<LoginProps, Handlers>({
-    onBtnClick: ({isLoading, login, password, onLogin}) => () => {
+    onClickLoginBtn: ({isLoading, login, password, onLogin}) => () => {
         if (!isLoading) {
             onLogin(login, password);
         }
@@ -62,7 +62,7 @@ const enhance = compose<LoginProps, Outter>(
     enhanceHandlers,
 );
 
-const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}: LoginProps) => {
+const Login = ({login, password, setValueInInput, isLoading, error, onClickLoginBtn}: LoginProps) => {
     const styles = useStyles();
 
     const setValue = useCallback(
@@ -72,7 +72,7 @@ const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}:
 
     const enter = ({keyCode}: React.KeyboardEvent<HTMLInputElement>) => {
         if (keyCode === ENTER_KEY_CODE) {
-            onBtnClick();
+            onClickLoginBtn();
         }
     };
 
@@ -82,20 +82,30 @@ const Login = ({login, password, setValueInInput, isLoading, error, onBtnClick}:
         }
     }, [isLoading, error, setValue]);
 
-    // const isBtnDisabled = isLoading || !(login && password);
+    const isBtnDisabled = isLoading || !(login && password);
     // const isShowErrorLabel = error && !isLoading;
 
     return (
-        <Grid container className={styles.root}>
-            <Grid direction="column" container justify="center" spacing={2}>
-                <Input label="Login" type="text" value={login} onChange={setValue('login')} />
-                <Input
-                    label="Password"
-                    type="password"
-                    value={password}
-                    onChange={setValue('password')}
-                    onKeyDown={enter}
-                />
+        <Grid container direction='column' alignItems='center' className={styles.root} xs={12}>
+            <Grid direction='column' container justify='center' alignItems='center' spacing={2} xs={10}>
+                <Grid item>
+                    <Input label='Login' type='text' value={login} onChange={setValue('login')} />
+                </Grid>
+                <Grid item>
+                    <Input
+                        label='Password'
+                        type='password'
+                        value={password}
+                        onChange={setValue('password')}
+                        onKeyDown={enter}
+                    />
+                </Grid>
+
+                <Grid item>
+                    <Button onClick={onClickLoginBtn} disabled={isBtnDisabled} variant='contained' color='primary'>
+                        Войти
+                    </Button>
+                </Grid>
             </Grid>
 
             {/* {isShowErrorLabel && <h3 className={s.error}>{error}</h3>} 

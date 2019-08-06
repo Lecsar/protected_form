@@ -1,13 +1,11 @@
 import React from 'react';
-// import {Button, ButtonProps} from 'react-toolbox/lib/button';
-import {shouldUpdate} from 'recompose';
+import Button, {ButtonProps} from '@material-ui/core/Button';
+import useStyles from './styles';
 
-import styles from './button.module.less';
+const StyledButton = (props: ButtonProps) => {
+    const styles = useStyles();
 
-// const StyledButton = (props: ButtonProps) => <Button className={styles.button} {...props} />;
+    return <Button classes={styles} {...props} />;
+};
 
-// const checkPropsChange = (props: ButtonProps, nextProps: ButtonProps) => nextProps.disabled !== props.disabled;
-
-// export default shouldUpdate(checkPropsChange)(StyledButton);
-
-export default () => false;
+export default StyledButton;

@@ -16,19 +16,26 @@ const useStyles = makeStyles(
 
         controlLabel: {
             fontSize: '2rem',
-            marginRight: 20,
+            textAlign: 'right',
+            marginRight: '1rem',
+            width: 150,
+        },
+
+        labelPlacementStart: {
+            margin: 0,
+            padding: 0,
         },
     }),
 );
 
 const BaseInput = ({label, ...props}: InputProps & {label: string}) => {
-    const {inputBlock, controlLabel, ...classes} = useStyles();
+    const {inputBlock, controlLabel, labelPlacementStart, ...classes} = useStyles();
 
     return (
         <FormControlLabel
-            classes={{label: controlLabel}}
+            classes={{label: controlLabel, labelPlacementStart} as any}
             label={label}
-            labelPlacement="start"
+            labelPlacement='start'
             control={<Input className={inputBlock} classes={classes} {...props} />}
         />
     );

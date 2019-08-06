@@ -1,7 +1,7 @@
 import {Dispatch} from 'react';
 import {ADRESS} from '../../../const';
 import {DOWNLOAD_DATA_REQUEST} from '../const';
-import CryptoJS from 'crypto-js';
+import {encryptRSA, getEnctyptedFile} from './crypto';
 
 const getKey = (): Promise<any> =>
     fetch(`${ADRESS}/getKey`)
@@ -20,7 +20,7 @@ export const downloadData = (fileName: string, file: Blob | null) => (dispatch: 
         .then(({key}) => {
             const formData = new FormData();
 
-            const cryptoFileName = CryptoJS.AES.encrypt(fileName, (key as any) as string, {}).toString();
+            const cryptoFileName = encryptRSA(fileName, key);
             formData.append('fileName', cryptoFileName);
 
             if (file) {
