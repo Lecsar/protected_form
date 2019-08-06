@@ -18,7 +18,7 @@ const useStyles = makeStyles(
             fontSize: '2rem',
             textAlign: 'right',
             marginRight: '1rem',
-            width: 150,
+            minWidth: 150,
         },
 
         labelPlacementStart: {
