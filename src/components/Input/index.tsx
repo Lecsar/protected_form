@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import Input, {InputProps} from '@material-ui/core/Input';
 import {makeStyles, createStyles} from '@material-ui/styles';
 import {FormControlLabel} from '@material-ui/core';
@@ -30,6 +30,7 @@ const useStyles = makeStyles(
 
 const BaseInput = ({label, ...props}: InputProps & {label?: string}) => {
     const {inputBlock, controlLabel, labelPlacementStart, ...classes} = useStyles();
+
     const input = <Input className={inputBlock} classes={classes} {...props} />;
 
     return label ? (

@@ -1,40 +1,38 @@
-interface Message {
-    id: string;
-    author: string;
-    text: string;
-    isMyMessage: boolean;
-}
+import ChatAction from '../typings/Chat';
+import {
+    CHAT_CONNECT_SUCCESS,
+    CHAT_CONNECT_REQUEST,
+    CHAT_CONNECT_ERROR,
+    CHAT_SET_MESSAGES,
+} from '../containers/Chat/const';
+import {Message} from '../typings/Chat/ws';
 
 interface ChatState {
+    id: number | null;
+    name: string;
     messages: Message[];
+    isConnecting: boolean;
+    error: false | string;
 }
 
 const initialState: ChatState = {
-    messages: [
-        {
-            id: '1',
-            author: 'Dmitry Levshin',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            isMyMessage: true,
-        },
-        {
-            id: '2',
-            author: 'Dmitry Levshin',
-            text:
-                'Duis iaculis a dui vel bibendum. Interdum et malesuada fames ac ante ipsum primis que, risus elit egestas m',
-            isMyMessage: true,
-        },
-        {
-            id: '3',
-            author: 'Alexey Efremov',
-            text: 'Proin id sem a elit pellentesque porta. Phasellus ut ipsum tincidunt',
-            isMyMessage: false,
-        },
-    ],
+    id: null,
+    name: '',
+    messages: [],
+    isConnecting: true,
+    error: false,
 };
 
-export default (state = initialState, action: any): ChatState => {
+export default (state = initialState, action: ChatAction): ChatState => {
     switch (action.type) {
+        case CHAT_CONNECT_REQUEST:
+            return {...state, isConnecting: true};
+        case CHAT_CONNECT_SUCCESS:
+            return {...state, isConnecting: false, id: action.id, name: action.name};
+        case CHAT_CONNECT_ERROR:
+            return {...state, isConnecting: false, error: action.error};
+        case CHAT_SET_MESSAGES:
+            return {...state, messages: action.messages};
         default:
             return state;
     }

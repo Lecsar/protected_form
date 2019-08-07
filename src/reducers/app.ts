@@ -1,5 +1,5 @@
 import {Post} from '../typings';
-import AppAction from '../typings/AppActions';
+import AppAction from '../typings/App';
 import {LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../containers/App/const';
 
 interface AppState {

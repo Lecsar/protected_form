@@ -1,8 +1,8 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../containers/Login/const';
 import {LOG_OUT} from '../containers/App/const';
 import {Roles, ErrorMessage} from '../typings';
-import LoginAction from '../typings/LoginActions';
-import {LogOutAction} from '../typings/AppActions';
+import LoginAction from '../typings/Login';
+import {LogOutAction} from '../typings/App';
 
 interface LoginState {
     isAuthenticated: boolean;
