@@ -6,7 +6,7 @@ import {FormControlLabel} from '@material-ui/core';
 const useStyles = makeStyles(
     createStyles({
         inputBlock: {
-            width: 300,
+            width: '100%',
             height: 50,
         },
 
@@ -28,16 +28,19 @@ const useStyles = makeStyles(
     }),
 );
 
-const BaseInput = ({label, ...props}: InputProps & {label: string}) => {
+const BaseInput = ({label, ...props}: InputProps & {label?: string}) => {
     const {inputBlock, controlLabel, labelPlacementStart, ...classes} = useStyles();
+    const input = <Input className={inputBlock} classes={classes} {...props} />;
 
-    return (
+    return label ? (
         <FormControlLabel
             classes={{label: controlLabel, labelPlacementStart} as any}
             label={label}
-            labelPlacement='start'
-            control={<Input className={inputBlock} classes={classes} {...props} />}
+            labelPlacement="start"
+            control={input}
         />
+    ) : (
+        input
     );
 };
 
