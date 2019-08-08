@@ -1,11 +1,10 @@
 import React from 'react';
-import Button, {ButtonProps} from '@material-ui/core/Button';
-import useStyles from './styles';
+import {Button as BaseButton} from '@material-ui/core';
+import {ButtonProps} from '@material-ui/core/Button';
+import useStyles from './style';
 
-const StyledButton = (props: ButtonProps) => {
+export const Button = (props: ButtonProps) => {
     const styles = useStyles();
 
-    return <Button classes={styles} variant='contained' {...props} />;
+    return <BaseButton classes={styles} variant="contained" {...props} />;
 };
-
-export default StyledButton;

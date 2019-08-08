@@ -20,7 +20,6 @@ export interface AddMessageApi {
 
 export const CHAT_CONNECTED = 'connected';
 export const CHAT_ADD_USER = 'addUser';
-// export const CHAT_USER_ADDED = 'userAdded';
 export const CHAT_ADD_MESSAGE = 'addMessage';
-// export const CHAT_MESSAGE_ADDED = 'messageAdded';
 export const CHAT_GET_ALL_MESSAGES = 'getAllMessages';
+export const CLEAR_CHAT = 'clearChat';

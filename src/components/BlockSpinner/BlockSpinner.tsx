@@ -1,8 +1,8 @@
 import React from 'react';
-import useStyles from './styles';
+import useStyles from './style';
 import {Grid, CircularProgress} from '@material-ui/core';
 
-const BlockSpinner = () => {
+export const BlockSpinner = () => {
     const s = useStyles();
 
     return (
@@ -12,5 +12,3 @@ const BlockSpinner = () => {
         </Grid>
     );
 };
-
-export default BlockSpinner;

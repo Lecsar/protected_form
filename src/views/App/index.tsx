@@ -8,7 +8,7 @@ import {TypeOfConnect, Post} from '../../typings';
 import {onLogOut, onLoadPosts} from './actions/appActions';
 
 // import Button from '../../components/Button';
-import List from '../../components/List';
+import {List} from '../../components';
 import withLazyLoading from '../../HOC/withLazyLoading';
 import s from './styles/App.module.less';
 

@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/styles';
 
-export default makeStyles({
+export const useStylesMessage = makeStyles({
     messageBlock: {
         margin: '5px 0',
         padding: '0 10px',

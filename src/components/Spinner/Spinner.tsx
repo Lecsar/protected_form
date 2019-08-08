@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from './spinner.module.less';
 
-const Spinner = (props: {className?: string}) => (
+export const Spinner = (props: {className?: string}) => (
     <div className={`${s.windows8} ${props.className}`}>
         <div className={s.wBall} id={s.wBall1}>
             <div className={s.wInnerBall} />
@@ -21,5 +21,3 @@ const Spinner = (props: {className?: string}) => (
         </div>
     </div>
 );
-
-export default Spinner;

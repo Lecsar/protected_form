@@ -1,12 +1,6 @@
 import {Dispatch} from 'redux';
 import {CHAT_CONNECT_REQUEST, CHAT_CONNECT_SUCCESS, CHAT_SET_MESSAGES} from '../const';
-import {
-    CHAT_CONNECTED,
-    CHAT_ADD_USER,
-    AddUserApi,
-    CHAT_GET_ALL_MESSAGES,
-    GetAllMessagesApi,
-} from '../typings/ws';
+import {CHAT_CONNECTED, CHAT_ADD_USER, AddUserApi, CHAT_GET_ALL_MESSAGES, GetAllMessagesApi} from '../typings';
 
 export default (socket: SocketIOClient.Socket) => (dispatch: Dispatch) => {
     dispatch({type: CHAT_CONNECT_REQUEST});

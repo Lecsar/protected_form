@@ -2,9 +2,7 @@ import React, {useState, ChangeEvent} from 'react';
 import {Dispatch, bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Grid, CircularProgress} from '@material-ui/core';
-import Input from '../../../components/Input';
-import Dropzone from '../../../components/DropZone';
-import Button from '../../../components/Button';
+import {Input, Dropzone, Button} from '../../../components';
 
 import {downloadData} from '../actions/formActions';
 

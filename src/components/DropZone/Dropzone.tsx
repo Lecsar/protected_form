@@ -2,17 +2,20 @@ import React, {useCallback} from 'react';
 import cn from 'classnames';
 import {useDropzone} from 'react-dropzone';
 
-import s from './styles/dropzone.module.less';
+import s from './dropzone.module.less';
 
 interface DropzoneProps {
     disabled: boolean;
     onDropFile: (files: File[]) => void;
 }
 
-const Dropzone = ({disabled, onDropFile}: DropzoneProps) => {
-    const onDrop = useCallback(acceptedFiles => {
-        onDropFile(acceptedFiles);
-    }, [onDropFile]);
+export const Dropzone = ({disabled, onDropFile}: DropzoneProps) => {
+    const onDrop = useCallback(
+        acceptedFiles => {
+            onDropFile(acceptedFiles);
+        },
+        [onDropFile],
+    );
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, disabled});
 
     return (
@@ -29,5 +32,3 @@ const Dropzone = ({disabled, onDropFile}: DropzoneProps) => {
         </div>
     );
 };
-
-export default Dropzone;

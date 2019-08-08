@@ -1,5 +1,6 @@
 import React from 'react';
-import Input, {InputProps} from '@material-ui/core/Input';
+import {Input as BaseInput} from '@material-ui/core';
+import {InputProps} from '@material-ui/core/Input';
 import {makeStyles, createStyles} from '@material-ui/styles';
 import {FormControlLabel} from '@material-ui/core';
 
@@ -28,10 +29,10 @@ const useStyles = makeStyles(
     }),
 );
 
-const BaseInput = ({label, ...props}: InputProps & {label?: string}) => {
+export const Input = ({label, ...props}: InputProps & {label?: string}) => {
     const {inputBlock, controlLabel, labelPlacementStart, ...classes} = useStyles();
 
-    const input = <Input className={inputBlock} classes={classes} {...props} />;
+    const input = <BaseInput className={inputBlock} classes={classes} {...props} />;
 
     return label ? (
         <FormControlLabel
@@ -48,5 +49,3 @@ const BaseInput = ({label, ...props}: InputProps & {label?: string}) => {
 // const areEqual = (prevProps: InputProps, nextProps: InputProps) => prevProps.value === nextProps.value;
 
 // export default memo(BaseInput, areEqual);
-
-export default BaseInput;

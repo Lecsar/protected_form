@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {AddMessageApi, CHAT_ADD_MESSAGE} from '../typings/ws';
+import {AddMessageApi, CHAT_ADD_MESSAGE} from '../typings';
 import {CHAT_SEND_MESSAGE_SUCCESS} from '../const';
 
 export default (socket: SocketIOClient.Socket) => (dispatch: Dispatch) => {

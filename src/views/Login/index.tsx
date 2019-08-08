@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {compose, withStateHandlers, StateHandlerMap, withHandlers} from 'recompose';
 import Grid from '@material-ui/core/Grid';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import {Input, Button} from '../../components';
 
 import {TypeOfConnect} from '../../typings';
 import {onLogin} from './actions/loginActions';

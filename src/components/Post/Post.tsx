@@ -2,13 +2,13 @@ import React from 'react';
 import {pure} from 'recompose';
 
 import s from './post.module.less';
-import {Post} from '../../typings';
+import {Post as PostType} from '../../typings';
 
-interface PostProps extends Post {
+interface PostProps extends PostType {
     index: number;
 }
 
-const PostComponent = ({index, title, body}: PostProps) => (
+const BasePostComponent = ({index, title, body}: PostProps) => (
     <div className={s.post}>
         <span className={s.counter}>{index}</span>
 
@@ -20,4 +20,4 @@ const PostComponent = ({index, title, body}: PostProps) => (
     </div>
 );
 
-export default pure(PostComponent);
+export const Post = pure(BasePostComponent);

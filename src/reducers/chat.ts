@@ -1,4 +1,4 @@
-import ChatAction, {ChatUser} from '../views/Chat/typings';
+import {ChatAction, ChatUser, Message} from '../views/Chat/typings';
 import {
     CHAT_CONNECT_SUCCESS,
     CHAT_CONNECT_REQUEST,
@@ -6,7 +6,6 @@ import {
     CHAT_SET_MESSAGES,
     CHAT_SEND_MESSAGE_REQUEST,
 } from '../views/Chat/const';
-import {Message} from '../views/Chat/typings/ws';
 
 interface ChatState {
     user: ChatUser | null;
