@@ -39,7 +39,7 @@ export const useStylesMessage = makeStyles({
     },
 
     deleteIcon: {
-        fontSize: '1.5rem',
+        fontSize: '1.3rem',
         cursor: 'pointer',
         position: 'absolute',
         top: '-.7rem',
