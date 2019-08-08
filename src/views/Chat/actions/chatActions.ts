@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import io from 'socket.io-client';
 import {WS_ADRESS} from '../../../const';
-import {CHAT_ADD_MESSAGE, Message} from '../../../typings/Chat/ws';
+import {CHAT_ADD_MESSAGE, Message} from '../typings/ws';
 import {CHAT_SEND_MESSAGE_REQUEST} from '../const';
 import uuid from 'uuid';
 

@@ -5,7 +5,7 @@ import {
     CHAT_SET_MESSAGES,
     CHAT_SEND_MESSAGE_SUCCESS,
     CHAT_SEND_MESSAGE_REQUEST,
-} from '../../containers/Chat/const';
+} from '../const';
 import {Message} from './ws';
 
 export interface ChatUser {

@@ -4,7 +4,7 @@ import {bindActionCreators, Dispatch} from 'redux';
 import {Redirect} from 'react-router';
 import {TypeOfConnect, UserData} from '../typings';
 import checkAuth from '../helpers/checkAuth';
-import {onSuccessLogin} from '../containers/Login/actions/loginActions';
+import {onSuccessLogin} from '../views/Login/actions/loginActions';
 import {AppState} from '../store';
 import {AUTH_TOKEN} from '../const';
 

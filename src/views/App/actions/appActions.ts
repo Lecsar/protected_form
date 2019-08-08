@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {LOG_OUT, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../const';
 import {AUTH_TOKEN} from '../../../const';
-import {LoadPostsAction} from '../../../typings/App';
+import {LoadPostsAction} from '../../../views/App/typings';
 
 export const onLogOut = () => (dispatch: Dispatch) => {
     localStorage.removeItem(AUTH_TOKEN);

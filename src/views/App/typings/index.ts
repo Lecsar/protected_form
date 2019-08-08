@@ -1,6 +1,6 @@
 import {Action} from 'redux';
-import {LOG_OUT, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../../containers/App/const';
-import {Post} from '..';
+import {LOG_OUT, LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../const';
+import {Post} from '../../../typings';
 
 export interface LogOutAction extends Action {
     type: typeof LOG_OUT;

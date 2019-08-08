@@ -6,7 +6,7 @@ import {
     AddUserApi,
     CHAT_GET_ALL_MESSAGES,
     GetAllMessagesApi,
-} from '../../../typings/Chat/ws';
+} from '../typings/ws';
 
 export default (socket: SocketIOClient.Socket) => (dispatch: Dispatch) => {
     dispatch({type: CHAT_CONNECT_REQUEST});

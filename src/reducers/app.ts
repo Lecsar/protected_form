@@ -1,6 +1,6 @@
 import {Post} from '../typings';
-import AppAction from '../typings/App';
-import {LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../containers/App/const';
+import AppAction from '../views/App/typings';
+import {LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_ERROR} from '../views/App/const';
 
 interface AppState {
     posts: Post[];

@@ -1,4 +1,4 @@
-import {DOWNLOAD_DATA_REQUEST} from '../containers/Form/const';
+import {DOWNLOAD_DATA_REQUEST} from '../views/Form/const';
 
 interface FormState {
     isLoading: boolean;

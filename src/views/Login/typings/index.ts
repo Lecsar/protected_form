@@ -1,6 +1,6 @@
 import {Action} from 'redux';
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../../containers/Login/const';
-import {Roles, ErrorMessage} from '..';
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../const';
+import {Roles, ErrorMessage} from '../../../typings';
 
 export interface LoginRequestAction extends Action {
     type: typeof LOGIN_REQUEST;

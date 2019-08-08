@@ -5,7 +5,7 @@ import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR} from '../const';
 import {ROUTING, AUTH_TOKEN} from '../../../const';
 import checkAuth from '../../../helpers/checkAuth';
 import {UserData} from '../../../typings';
-import {LoginAction} from '../../../typings/Login';
+import {LoginAction} from '../typings';
 
 type Effect = ThunkAction<any, AppState, any, LoginAction>;
 
