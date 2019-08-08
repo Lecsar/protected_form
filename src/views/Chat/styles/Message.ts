@@ -24,12 +24,31 @@ export const useStylesMessage = makeStyles({
         padding: 5,
     },
 
+    headerWrapper: {
+        position: 'relative',
+    },
+
     messageAuthor: {
         whiteSpace: 'nowrap',
         fontSize: '2rem',
+        marginRight: '2rem',
     },
 
     messageText: {
         fontSize: '1.6rem',
+    },
+
+    deleteIcon: {
+        fontSize: '1.5rem',
+        cursor: 'pointer',
+        position: 'absolute',
+        top: '-.7rem',
+        right: '-.3rem',
+    },
+
+    loadingSpinner: {
+        position: 'absolute',
+        top: '-.5rem',
+        left: '-2.5rem',
     },
 });

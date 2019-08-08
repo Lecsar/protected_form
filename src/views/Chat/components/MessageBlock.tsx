@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid} from '@material-ui/core';
-import Message from './Message';
+import {Message} from './Message';
 import {Message as MessageType} from '../typings';
 
 import {useStylesMessageBlock} from '../styles';

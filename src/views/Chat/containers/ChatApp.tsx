@@ -5,14 +5,14 @@ import {compose} from 'recompose';
 import io from 'socket.io-client';
 import {Grid} from '@material-ui/core';
 
+import {BlockSpinner, Button} from '../../../components';
+import {MessageBlock} from '../components/MessageBlock';
+import {MessageInput} from './MessageInput';
 import {TypeOfConnect} from '../../../typings';
 import {CLEAR_CHAT} from '../typings';
 import {AppState} from '../../../store';
-import {BlockSpinner, Button} from '../../../components';
-import {MessageBlock} from '../components/MessageBlock';
 import {connectToChat, sendMessage} from '../actions';
 import {WS_ADRESS} from '../../../const';
-import {MessageInput} from './MessageInput';
 import {useStylesChatApp} from '../styles';
 
 /* eslint-disable  react-hooks/exhaustive-deps */
@@ -52,7 +52,7 @@ const BaseChatApp = ({user, messageHistory, isConnecting, connectToChat, sendMes
 
     return (
         <Grid container component="main" className={s.root} direction="column" alignItems="center" justify="center">
-            <Grid item xs={8}>
+            <Grid item container direction="column" xs={8}>
                 <Grid item component="h1" className={s.header}>
                     Simple Chat
                 </Grid>

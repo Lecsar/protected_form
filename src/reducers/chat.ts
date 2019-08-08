@@ -5,6 +5,7 @@ import {
     CHAT_CONNECT_ERROR,
     CHAT_SET_MESSAGES,
     CHAT_SEND_MESSAGE_REQUEST,
+    // CHAT_SEND_MESSAGE_SUCCESS,
 } from '../views/Chat/const';
 
 interface ChatState {

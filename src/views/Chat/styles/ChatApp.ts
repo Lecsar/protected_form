@@ -11,6 +11,4 @@ export const useStylesChatApp = makeStyles({
         textAlign: 'center',
         margin: '1rem 0',
     },
-
-    
 });
