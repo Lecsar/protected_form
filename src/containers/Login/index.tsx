@@ -13,6 +13,8 @@ import {AppState} from '../../store';
 import {ENTER_KEY_CODE} from '../../const';
 import useStyles from './styles';
 
+/* eslint-disable  react-hooks/exhaustive-deps */
+
 type Outter = {};
 
 interface LoginState {
@@ -86,15 +88,15 @@ const Login = ({login, password, setValueInInput, isLoading, error, onClickLogin
     // const isShowErrorLabel = error && !isLoading;
 
     return (
-        <Grid container direction='column' alignItems='center' className={styles.root} xs={12}>
-            <Grid direction='column' container justify='center' alignItems='center' spacing={2} xs={10}>
+        <Grid container direction="column" alignItems="center" className={styles.root} xs={12}>
+            <Grid direction="column" container justify="center" alignItems="center" spacing={2} xs={10}>
                 <Grid item>
-                    <Input label='Login' type='text' value={login} onChange={setValue('login')} />
+                    <Input label="Login" type="text" value={login} onChange={setValue('login')} />
                 </Grid>
                 <Grid item>
                     <Input
-                        label='Password'
-                        type='password'
+                        label="Password"
+                        type="password"
                         value={password}
                         onChange={setValue('password')}
                         onKeyDown={enter}
@@ -102,7 +104,7 @@ const Login = ({login, password, setValueInInput, isLoading, error, onClickLogin
                 </Grid>
 
                 <Grid item>
-                    <Button onClick={onClickLoginBtn} disabled={isBtnDisabled} variant='contained' color='primary'>
+                    <Button onClick={onClickLoginBtn} disabled={isBtnDisabled} variant="contained" color="primary">
                         Войти
                     </Button>
                 </Grid>

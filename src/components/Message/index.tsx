@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from 'classnames';
-import {makeStyles} from '@material-ui/styles';
 import {Grid} from '@material-ui/core';
 import useStyles from './styles';
 

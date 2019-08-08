@@ -1,7 +1,7 @@
 import {Dispatch} from 'react';
 import {API_ADRESS} from '../../../const';
 import {DOWNLOAD_DATA_REQUEST} from '../const';
-import {encryptRSA, getEnctyptedFile} from './crypto';
+import {encryptRSA} from './crypto';
 
 const getKey = (): Promise<any> =>
     fetch(`${API_ADRESS}/getKey`)

@@ -4,11 +4,9 @@ import {
     CHAT_CONNECT_REQUEST,
     CHAT_CONNECT_ERROR,
     CHAT_SET_MESSAGES,
-    CHAT_SEND_MESSAGE_SUCCESS,
     CHAT_SEND_MESSAGE_REQUEST,
 } from '../containers/Chat/const';
 import {Message} from '../typings/Chat/ws';
-import uuid from 'uuid';
 
 interface ChatState {
     user: ChatUser | null;

@@ -1,3 +1,5 @@
+/* eslint-disable  react-hooks/exhaustive-deps */
+
 import React, {useRef, useEffect, useState, RefObject} from 'react';
 
 type ConnectedProps<T> = T & {watchedPropName: Exclude<keyof T, 'watchedPropName'>};

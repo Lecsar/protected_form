@@ -14,6 +14,8 @@ import BlockSpinner from '../../components/BlockSpinner';
 import Button from '../../components/Button';
 import useStyles from './styles';
 
+/* eslint-disable  react-hooks/exhaustive-deps */
+
 const mapStateToProps = ({chat: {messageHistory, isConnecting, user}}: AppState) => ({
     user,
     messageHistory,

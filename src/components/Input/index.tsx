@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import Input, {InputProps} from '@material-ui/core/Input';
 import {makeStyles, createStyles} from '@material-ui/styles';
 import {FormControlLabel} from '@material-ui/core';
