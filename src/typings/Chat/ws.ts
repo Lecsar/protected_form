@@ -1,16 +1,21 @@
+export interface Message {
+    id: number | string;
+    userId: number;
+    author: string;
+    text: string;
+    isSending?: boolean;
+}
+
 export interface AddUserApi {
     user: {name: string; id: number};
 }
 
-export interface Message {
-    id: number;
-    userId: number;
-    author: string;
-    text: string;
-}
-
 export interface GetAllMessagesApi {
     messages: Message[];
+}
+
+export interface AddMessageApi {
+    message: Message;
 }
 
 export const CHAT_CONNECTED = 'connected';

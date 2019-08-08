@@ -1,10 +1,10 @@
 import {Dispatch} from 'react';
-import {ADRESS} from '../../../const';
+import {API_ADRESS} from '../../../const';
 import {DOWNLOAD_DATA_REQUEST} from '../const';
 import {encryptRSA, getEnctyptedFile} from './crypto';
 
 const getKey = (): Promise<any> =>
-    fetch(`${ADRESS}/getKey`)
+    fetch(`${API_ADRESS}/getKey`)
         .then(res => res.json())
         .catch(err => {
             console.error('Ошибка при получении публичного ключа');
@@ -27,7 +27,7 @@ export const downloadData = (fileName: string, file: Blob | null) => (dispatch: 
                 formData.append('file', file);
             }
 
-            return fetch(`${ADRESS}/secret`, {
+            return fetch(`${API_ADRESS}/secret`, {
                 method: 'post',
                 body: formData,
             });

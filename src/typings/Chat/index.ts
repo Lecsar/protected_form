@@ -3,8 +3,15 @@ import {
     CHAT_CONNECT_ERROR,
     CHAT_CONNECT_SUCCESS,
     CHAT_SET_MESSAGES,
+    CHAT_SEND_MESSAGE_SUCCESS,
+    CHAT_SEND_MESSAGE_REQUEST,
 } from '../../containers/Chat/const';
 import {Message} from './ws';
+
+export interface ChatUser {
+    id: number;
+    name: string;
+}
 
 interface ChatConnectRequest {
     type: typeof CHAT_CONNECT_REQUEST;
@@ -12,8 +19,7 @@ interface ChatConnectRequest {
 
 interface ChatConnectSuccess {
     type: typeof CHAT_CONNECT_SUCCESS;
-    name: string;
-    id: number;
+    user: ChatUser;
 }
 
 interface ChatConnectError {
@@ -26,6 +32,22 @@ interface ChatSetMessages {
     messages: Message[];
 }
 
-type ChatAction = ChatConnectRequest | ChatConnectSuccess | ChatConnectError | ChatSetMessages;
+interface ChatSendMessageRequest {
+    type: typeof CHAT_SEND_MESSAGE_REQUEST;
+    message: Message;
+}
+
+interface ChatSendMessageSuccess {
+    type: typeof CHAT_SEND_MESSAGE_SUCCESS;
+    message: Message;
+}
+
+type ChatAction =
+    | ChatConnectRequest
+    | ChatConnectSuccess
+    | ChatConnectError
+    | ChatSetMessages
+    | ChatSendMessageRequest
+    | ChatSendMessageSuccess;
 
 export default ChatAction;

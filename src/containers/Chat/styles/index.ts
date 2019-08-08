@@ -15,5 +15,6 @@ export default makeStyles({
     chat: {
         backgroundColor: '#f5f5f5',
         height: '70rem',
+        overflow: 'auto',
     },
 });

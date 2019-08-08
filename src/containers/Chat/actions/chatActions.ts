@@ -1,68 +1,21 @@
 import {Dispatch} from 'redux';
-import {CHAT_CONNECT_REQUEST, CHAT_CONNECT_SUCCESS, CHAT_SET_MESSAGES} from '../const';
 import io from 'socket.io-client';
-import {
-    CHAT_CONNECTED,
-    CHAT_ADD_USER,
-    AddUserApi,
-    CHAT_GET_ALL_MESSAGES,
-    GetAllMessagesApi,
-    Message,
-    CHAT_ADD_MESSAGE,
-} from '../../../typings/Chat/ws';
+import {WS_ADRESS} from '../../../const';
+import {CHAT_ADD_MESSAGE, Message} from '../../../typings/Chat/ws';
+import {CHAT_SEND_MESSAGE_REQUEST} from '../const';
+import uuid from 'uuid';
 
-export const connectToChat = () => (dispatch: Dispatch) => {
-    const socket = io.connect('https://10.19.12.117:8000');
+export const sendMessage = ({text, userId, author}: Omit<Message, 'id'>) => (dispatch: Dispatch) => {
+    const socket = io.connect(WS_ADRESS);
+    socket.emit(CHAT_ADD_MESSAGE, {text, userId});
 
-    dispatch({type: CHAT_CONNECT_REQUEST});
+    const message: Message = {
+        id: uuid(),
+        text,
+        userId,
+        author,
+        isSending: true,
+    };
 
-    new Promise(res => {
-        socket.on(CHAT_CONNECTED, () => {
-            console.log('Успешное соединение');
-            res();
-        });
-    })
-        .then(() => {
-            socket.emit(CHAT_ADD_USER, 'Dmitry Levshin');
-            return;
-        })
-        .then(
-            () =>
-                new Promise(res => {
-                    socket.on(CHAT_ADD_USER, ({user}: AddUserApi) => {
-                        console.log('Пользователь авторизовался в чате');
-
-                        dispatch({type: CHAT_CONNECT_SUCCESS, ...user});
-                        res();
-                    });
-                }),
-        )
-        .then(() => {
-            socket.emit(CHAT_GET_ALL_MESSAGES);
-            return;
-        })
-        .then(
-            () =>
-                new Promise(res => {
-                    socket.on(CHAT_GET_ALL_MESSAGES, ({messages}: GetAllMessagesApi) => {
-                        console.log('Cообщения успешно получены');
-                        dispatch({type: CHAT_SET_MESSAGES, messages});
-                        res();
-                    });
-                }),
-        )
-        .then(() => {
-            socket.close();
-        })
-        .catch(console.error);
-};
-
-export const sendMessage = (message: Omit<Omit<Message, 'id'>, 'userId'>) => (dispatch: Dispatch) => {
-    const socket = io.connect('https://10.19.12.117:8000');
-
-    socket.emit(CHAT_ADD_MESSAGE, message);
-
-    socket.on(CHAT_ADD_MESSAGE, (data: any) => {
-        console.log(data);
-    });
+    dispatch({type: CHAT_SEND_MESSAGE_REQUEST, message});
 };

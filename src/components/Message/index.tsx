@@ -16,7 +16,7 @@ const Message = ({author, text, isMyMessage = false}: MessageProps) => {
 
     return (
         <Grid container className={s.messageBlock} justify={isMyMessage ? 'flex-end' : 'flex-start'}>
-            <Grid className={cn(s.message, {[s.myMessage]: isMyMessage, [s.otherMessage]: !isMyMessage})} item xs={4}>
+            <Grid className={cn(s.message, {[s.myMessage]: isMyMessage, [s.otherMessage]: !isMyMessage})} item xs={8} >
                 <Grid container direction="column" className={s.messageWrapper}>
                     <Grid item component="h3" className={s.messageAuthor}>
                         {author}
