@@ -1,22 +1,23 @@
-import {DOWNLOAD_DATA_REQUEST} from '../views/Form/const';
+import {BlockData, FormAction} from 'views/Form/typings';
+import {mockBlockData} from 'views/Form/mock';
+import {SET_ACTIVE_TAB_ID} from 'views/Form/const';
 
-interface FormState {
+interface FormReducer {
     isLoading: boolean;
-    error: boolean | string;
-    encodeText: string;
+    activeTabId: string | null;
+    blocks: BlockData[];
 }
 
-const initialState: FormState = {
+const initialState: FormReducer = {
     isLoading: false,
-    error: false,
-    encodeText: '',
+    activeTabId: '1',
+    blocks: mockBlockData,
 };
 
-export default (state = initialState, action: any): FormState => {
+export default (state = initialState, action: FormAction) => {
     switch (action.type) {
-        case DOWNLOAD_DATA_REQUEST:
-            return {...state, isLoading: true};
-
+        case SET_ACTIVE_TAB_ID:
+            return {...state, activeTabId: action.activeTabId};
         default:
             return state;
     }

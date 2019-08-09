@@ -1,56 +1,41 @@
-import React, {useState, ChangeEvent} from 'react';
-import {Dispatch, bindActionCreators} from 'redux';
+/* eslint-disable  react-hooks/exhaustive-deps */
+import React from 'react';
 import {connect} from 'react-redux';
-import {Grid, CircularProgress} from '@material-ui/core';
-import {Input, Dropzone, Button} from '../../../components';
+import {Dispatch, bindActionCreators} from 'redux';
+import {TypeOfConnect} from 'typings';
+import {AppState} from 'store';
+import {Grid} from '@material-ui/core';
+import {setActiveTabId} from '../actions';
+import {FormTabs} from '../components/FormTabs';
+import {FormFields} from './FormFields';
+import {useFormStyles} from '../styles';
 
-import {downloadData} from '../actions/formActions';
+const mapStateToProps = ({form: {blocks, activeTabId}}: AppState) => {
+    const tabs = blocks.map(({block}) => block);
+    const fields = blocks.find(({block: {id}}) => activeTabId === id)!.fields;
 
-import {TypeOfConnect} from '../../../typings';
-import {AppState} from '../../../store';
-import s from '../styles/form.module.less';
-
-const mapStateToProps = ({form: {isLoading}}: AppState) => ({isLoading});
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({downloadData}, dispatch);
+    return {activeTabId, tabs, fields};
+};
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({setActiveTabId}, dispatch);
 
 const enhanceStore = connect(
     mapStateToProps,
     mapDispatchToProps,
 );
 
-type FormProps = TypeOfConnect<typeof enhanceStore>;
+type BaseFormProps = TypeOfConnect<typeof enhanceStore>;
 
-const BaseForm = ({isLoading, downloadData}: FormProps) => {
-    const [fileName, setFileName] = useState('');
-    const [file, setFile] = useState<Blob | null>(null);
-
-    const onChangeInput = ({target: {value}}: ChangeEvent<HTMLInputElement>) => setFileName(value);
-
-    const onDrop = (files: any) => {
-        setFile(files[0]);
-    };
-
-    const submitForm = () => {
-        downloadData(fileName, file);
-    };
+const BaseForm = ({activeTabId, tabs, fields, setActiveTabId}: BaseFormProps) => {
+    const s = useFormStyles();
 
     return (
-        <Grid container justify="center" xs={12}>
-            <Grid component="form" container justify="center" alignItems="center" xs={6}>
-                <Grid item>
-                    <h2 className={s.header}>Форма для загрузки зашифрованных данных</h2>
+        <Grid component="main" container direction="row" justify="center">
+            <Grid className={s.form} component="section" item container direction="column" xs={8} wrap="nowrap">
+                <Grid className={s.header} component="h1" item>
+                    POC формы заполнения анкеты
                 </Grid>
-                <Grid direction="column" container>
-                    <Input disabled={isLoading} label="Название файла" value={fileName} onChange={onChangeInput} />
-                    <Dropzone disabled={isLoading} onDropFile={onDrop} />
-                </Grid>
-                <Grid container justify="center">
-                    <Button color="primary" disabled={isLoading} onClick={submitForm} style={{fontSize: '3rem'}}>
-                        Загрузить
-                    </Button>
-                </Grid>
-
-                {isLoading && <CircularProgress size={100} className={s.spinner} />}
+                {activeTabId && <FormTabs activeTabId={activeTabId} tabs={tabs} setTabActiveTabId={setActiveTabId} />}
+                {activeTabId && <FormFields fields={fields} />}
             </Grid>
         </Grid>
     );

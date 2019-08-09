@@ -1,6 +1,6 @@
 import React, {useState, ChangeEvent, useRef, useEffect} from 'react';
 import {Dispatch} from 'redux';
-import {Input} from '../../../components';
+import {ControlInput} from '../../../components';
 import {ENTER_KEY_CODE} from '../../../const';
 
 interface MessageInputProps {
@@ -31,7 +31,7 @@ export const MessageInput = ({isConnecting, sendMessage}: MessageInputProps) => 
     };
 
     return (
-        <Input
+        <ControlInput
             inputRef={inputRef}
             value={text}
             onChange={onChange}
