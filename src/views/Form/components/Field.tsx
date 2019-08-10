@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Select, FormControl, InputLabel, MenuItem} from '@material-ui/core';
-import {FieldData, FieldType} from '../typings';
+import {FieldData, FieldType, Option} from '../typings';
 import {ControlInput, ControlSelect} from 'components';
 
 export const Field = (props: FieldData) => {
@@ -16,7 +16,12 @@ export const Field = (props: FieldData) => {
                 );
             case FieldType.select:
                 return (
-                    <ControlSelect label={props.label} options={props.options} />
+                    <ControlSelect<Option>
+                        id={props.id}
+                        value={props.value}
+                        label={props.label}
+                        options={props.options}
+                    />
                     // <FormControl>
                     //     <InputLabel htmlFor={`${props.id}-${props.type}`}>{props.label}</InputLabel>
                     //     <Select
@@ -42,7 +47,7 @@ export const Field = (props: FieldData) => {
     };
 
     return (
-        <Grid item xs={12}>
+        <Grid item xs={6}>
             <Grid item>{createField(props)}</Grid>
         </Grid>
     );

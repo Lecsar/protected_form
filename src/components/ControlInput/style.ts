@@ -11,7 +11,7 @@ export const useInputStyles = makeStyles(
 
         inputBlock: {
             width: '100%',
-            height: 50,
+            minHeight: 50,
         },
 
         input: {

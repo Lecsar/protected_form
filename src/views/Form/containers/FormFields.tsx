@@ -9,7 +9,7 @@ interface FormFieldsProps {
 
 export const FormFields = ({fields}: FormFieldsProps) => {
     return (
-        <Grid container direction="column" wrap="nowrap" spacing={2}>
+        <Grid container direction='row' wrap='wrap' spacing={2}>
             {fields.map(field => (
                 <Field key={field.id} {...field} />
             ))}
