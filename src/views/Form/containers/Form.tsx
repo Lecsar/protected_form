@@ -4,18 +4,23 @@ import {connect} from 'react-redux';
 import {Dispatch, bindActionCreators} from 'redux';
 import {TypeOfConnect} from 'typings';
 import {AppState} from 'store';
+import {createSelector} from 'reselect';
 import {Grid} from '@material-ui/core';
 import {setActiveTabId} from '../actions';
 import {FormTabs} from '../components/FormTabs';
 import {FormFields} from './FormFields';
 import {useFormStyles} from '../styles';
 
-const mapStateToProps = ({form: {blocks, activeTabId}}: AppState) => {
-    const tabs = blocks.map(({block}) => block);
-    const fields = blocks.find(({block: {id}}) => activeTabId === id)!.fields;
+const getBlocks = (state: AppState) => state.form.blocks;
+const getTabs = createSelector(
+    [getBlocks],
+    blocks => blocks.map(({block}) => block),
+);
 
-    return {activeTabId, tabs, fields};
-};
+const mapStateToProps = (state: AppState) => ({
+    activeTabId: state.form.activeTabId,
+    tabs: getTabs(state),
+});
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({setActiveTabId}, dispatch);
 
 const enhanceStore = connect(
@@ -25,7 +30,7 @@ const enhanceStore = connect(
 
 type BaseFormProps = TypeOfConnect<typeof enhanceStore>;
 
-const BaseForm = ({activeTabId, tabs, fields, setActiveTabId}: BaseFormProps) => {
+const BaseForm = ({activeTabId, tabs, setActiveTabId}: BaseFormProps) => {
     const s = useFormStyles();
 
     return (
@@ -35,7 +40,7 @@ const BaseForm = ({activeTabId, tabs, fields, setActiveTabId}: BaseFormProps) =>
                     POC формы заполнения анкеты
                 </Grid>
                 {activeTabId && <FormTabs activeTabId={activeTabId} tabs={tabs} setTabActiveTabId={setActiveTabId} />}
-                {activeTabId && <FormFields fields={fields} />}
+                {activeTabId && <FormFields />}
             </Grid>
         </Grid>
     );

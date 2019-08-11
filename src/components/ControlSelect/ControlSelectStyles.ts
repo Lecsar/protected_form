@@ -16,6 +16,11 @@ export const useControlSelectStyles = makeStyles({
         fontSize: '1.7rem',
     },
 
+    errorMessage: {
+        color: '#c62828',
+        fontSize: '1.5rem',
+    },
+
     icon: {
         fontSize: '2.5rem',
     },

@@ -1,1 +1,3 @@
 export const SET_ACTIVE_TAB_ID = 'SET_ACTIVE_TAB_ID';
+export const SET_FIELD_VALUE = 'SET_FIELD_VALUE';
+export const VALIDATE_FIELD = 'VALIDATE_FIELD';

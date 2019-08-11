@@ -4,8 +4,9 @@ import {SelectProps} from '@material-ui/core/Select';
 import {useControlSelectStyles} from './ControlSelectStyles';
 
 interface ControlSelectProps<T> extends SelectProps {
-    options: T[];
     label?: string;
+    errorMessage?: string;
+    options: T[];
     getOptionKey?: (option: T) => string;
     getOptionName?: (option: T) => string;
     getOptionValue?: (option: T) => string;
@@ -14,17 +15,19 @@ interface ControlSelectProps<T> extends SelectProps {
 export const ControlSelect = <T extends {id: string}>({
     id,
     label = '',
+    errorMessage = '',
     value,
     options = [],
     getOptionKey = o => o.id,
     getOptionName = (o: any) => o.name,
     getOptionValue = (o: any) => o.value,
+    ...otherProps
 }: ControlSelectProps<T>) => {
     const s = useControlSelectStyles();
     const htmlFor = `${label}-${id}`;
 
     return (
-        <Grid item direction='column' xs={12}>
+        <Grid item container direction="column" xs={12}>
             <FormLabel htmlFor={htmlFor} className={s.label}>
                 {label}
             </FormLabel>
@@ -32,13 +35,16 @@ export const ControlSelect = <T extends {id: string}>({
                 id={htmlFor}
                 className={s.select}
                 classes={{root: s.root, icon: s.icon}}
-                value={value || getOptionValue(options[0])}>
+                value={value || getOptionValue(options[0])}
+                {...otherProps}
+            >
                 {options.map(option => (
                     <MenuItem className={s.option} key={getOptionKey(option)} value={getOptionValue(option)}>
                         {getOptionName(option)}
                     </MenuItem>
                 ))}
             </Select>
+            {errorMessage && <FormLabel className={s.errorMessage}>{errorMessage}</FormLabel>}
         </Grid>
     );
 };

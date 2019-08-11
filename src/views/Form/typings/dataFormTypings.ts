@@ -15,8 +15,9 @@ export enum ValidationType {
 }
 
 export interface ValidationRule {
+    required: boolean;
     type: ValidationType;
-    regExp: RegExp;
+    regExp?: RegExp;
 }
 
 export interface Option {
@@ -30,6 +31,7 @@ export interface BaseData {
     type: FieldType;
     value: string;
     label: string;
+    size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
     validationRule?: ValidationRule;
 }
 
@@ -43,7 +45,15 @@ export interface SelectData extends BaseData {
     options: Option[];
 }
 
+export interface DataForValidation {
+    isDirty: boolean;
+    error: boolean;
+    errorMessage: string;
+}
+
 export type FieldData = InputData | SelectData;
+
+export type ExtendedFieldData = FieldData & DataForValidation;
 
 export interface BlockData {
     block: Block;

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {Redirect} from 'react-router';
 import {TypeOfConnect, UserData} from '../typings';
-import checkAuth from '../helpers/checkAuth';
+import {checkAuth} from '../helpers';
 import {onSuccessLogin} from '../views/Login/actions/loginActions';
 import {AppState} from '../store';
 import {AUTH_TOKEN} from '../const';

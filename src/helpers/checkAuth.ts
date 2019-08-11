@@ -16,7 +16,7 @@ const tokenSearchLambda = (token: string) => (u: User) => u.token === token;
 const loginSearchLambda = (login?: string, password?: string) => (user: User) =>
     user.login === login && user.password === password;
 
-const checkAuth = async ({authToken, login, password}: AuthData): Promise<AuthResponse> => {
+export const checkAuth = async ({authToken, login, password}: AuthData): Promise<AuthResponse> => {
     const lambdaForSearch = authToken ? tokenSearchLambda(authToken) : loginSearchLambda(login, password);
     const findedUser = data.find(lambdaForSearch);
 
@@ -41,5 +41,3 @@ const checkAuth = async ({authToken, login, password}: AuthData): Promise<AuthRe
         role: null,
     };
 };
-
-export default checkAuth;

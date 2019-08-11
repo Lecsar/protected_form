@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {memo} from 'react';
 import {noop} from 'lodash';
 import {Grid, AppBar, Tabs, Tab} from '@material-ui/core';
 import {Block} from '../typings';
@@ -15,7 +15,7 @@ const a11yProps = (index: number) => ({
     'aria-controls': `full-width-tabpanel-${index}`,
 });
 
-export const FormTabs = ({activeTabId, tabs = [], setTabActiveTabId = noop}: FormTabsProps) => {
+export const FormTabsBase = ({activeTabId, tabs = [], setTabActiveTabId = noop}: FormTabsProps) => {
     const s = useFormTabsStyles();
     const handleChange = (event: React.ChangeEvent<{}>, tabId: string) => setTabActiveTabId(tabId);
 
@@ -38,3 +38,14 @@ export const FormTabs = ({activeTabId, tabs = [], setTabActiveTabId = noop}: For
         </Grid>
     );
 };
+
+const areEqual = (prevProps: FormTabsProps, nextProps: FormTabsProps) => {
+    const isActiveIdEqual = prevProps.activeTabId === nextProps.activeTabId;
+    const isTabsEqual =
+        prevProps.tabs.length === nextProps.tabs.length &&
+        prevProps.tabs.every((prevTab, index) => prevTab === nextProps.tabs[index]);
+
+    return isActiveIdEqual && isTabsEqual;
+};
+
+export const FormTabs = memo(FormTabsBase, areEqual);
