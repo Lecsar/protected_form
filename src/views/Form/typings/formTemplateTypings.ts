@@ -4,8 +4,8 @@ export interface TabData {
 }
 
 export enum FieldType {
-    input,
-    select,
+    input = 'input',
+    select = 'select',
 }
 
 export enum ValidationType {
