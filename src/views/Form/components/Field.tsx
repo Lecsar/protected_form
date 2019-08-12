@@ -1,61 +1,38 @@
 /* eslint-disable  react-hooks/exhaustive-deps */
-import React, {useCallback, memo} from 'react';
+import React, {memo} from 'react';
 import {Grid} from '@material-ui/core';
 import {ControlInput, ControlSelect} from 'components';
 import {areEqual} from 'helpers';
-import {ExtendedFieldData, FieldType, Option, SetFieldValue, ValidateField} from '../typings';
+import {withForm} from 'HOC';
+import {ExtendedFieldData, FieldType} from '../typings';
 
-interface FieldActions {
-    setValue: (id: string, value: string) => SetFieldValue;
-    validateField: (id: string) => ValidateField;
-}
-
-type FieldProps = FieldActions & ExtendedFieldData;
+type FieldProps = ExtendedFieldData;
 
 const DEFAULT_FIELD_SIZE = 6;
 
-export const BaseField = (props: FieldProps) => {
-    const onChange = useCallback(e => props.setValue(props.id, e.target.value), [props.id, props.setValue]);
-    const onBlur = useCallback(e => props.validateField(props.id), [props.id, props.validateField]);
-
-    const createField = (props: FieldProps) => {
-        switch (props.type) {
+export const BaseField = ({type, validationRule, size, ...props}: FieldProps) => {
+    const createField = (type: FieldType) => {
+        switch (type) {
             case FieldType.input:
-                return (
-                    <ControlInput
-                        id={props.id}
-                        value={props.value}
-                        label={props.label}
-                        placeholder={props.placeholder}
-                        onChange={onChange}
-                        onBlur={onBlur}
-                        error={props.error}
-                        errorMessage={props.errorMessage}
-                    />
-                );
+                return ControlInput;
             case FieldType.select:
-                return (
-                    <ControlSelect<Option>
-                        id={props.id}
-                        value={props.value}
-                        label={props.label}
-                        options={props.options}
-                        onBlur={onBlur}
-                        error={props.error}
-                        errorMessage={props.errorMessage}
-                    />
-                );
+                return ControlSelect;
             default:
-                console.error(`Неизвестный FieldType`);
-                return null;
+                console.error('Неизвестный FieldType');
+                return () => null;
         }
     };
 
+    const Field = createField(type);
+
     return (
-        <Grid item xs={props.size ? props.size : DEFAULT_FIELD_SIZE}>
-            <Grid item>{createField(props)}</Grid>
+        <Grid item xs={size || DEFAULT_FIELD_SIZE}>
+            <Grid item>
+                <Field {...props as any} />
+            </Grid>
         </Grid>
     );
 };
 
-export const Field = memo(BaseField, areEqual);
+const FormField = withForm(BaseField);
+export const Field = memo(FormField, areEqual);

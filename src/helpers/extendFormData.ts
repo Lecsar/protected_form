@@ -1,9 +1,8 @@
-import {BlockData, DataForValidation} from 'views/Form/typings';
+import {BlockData} from 'views/Form/typings';
 
-const extendedData: DataForValidation = {
-    isDirty: false,
+const extendedData = {
     error: false,
-    errorMessage: '',
+    // shouldDisabled: () => true,
 };
 
 export const extendFormData = (data: BlockData[]) =>

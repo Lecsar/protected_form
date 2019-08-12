@@ -1,37 +1,30 @@
-import React, {useCallback} from 'react';
-import {Dispatch, bindActionCreators} from 'redux';
+import React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from 'store';
 import {createSelector} from 'reselect';
 import {TypeOfConnect} from 'typings';
 import {Grid} from '@material-ui/core';
 import {Field} from '../components/Field';
-import {setFieldValue, validateField} from '../actions';
+import {setFieldsState} from '../helpers';
 
-const getActiveTabId = (state: AppState) => state.form.activeTabId!;
-const getblocks = (state: AppState) => state.form.blocks!;
+const getForm = (state: AppState) => state.form;
 
-const getVisibleFields = createSelector(
-    [getActiveTabId, getblocks],
-    (activeTabId, blocks) => blocks.find(({block: {id}}) => activeTabId === id)!.fields,
+const getFields = createSelector(
+    [getForm],
+    setFieldsState,
 );
 
-const mapStateToProps = (state: AppState) => ({fields: getVisibleFields(state)});
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({setFieldValue, validateField}, dispatch);
+const mapStateToProps = (state: AppState) => ({fields: getFields(state)});
 
-const enhanceStore = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-);
+const enhanceStore = connect(mapStateToProps);
 
 type FormFieldsProps = TypeOfConnect<typeof enhanceStore>;
 
-export const FormFieldsBase = ({fields, setFieldValue, validateField}: FormFieldsProps) => {
-
+export const FormFieldsBase = ({fields}: FormFieldsProps) => {
     return (
         <Grid container direction="row" wrap="wrap" spacing={2}>
             {fields.map(field => (
-                <Field key={field.id} {...field} setValue={setFieldValue} validateField={validateField} />
+                <Field key={field.id} {...field as any} />
             ))}
         </Grid>
     );

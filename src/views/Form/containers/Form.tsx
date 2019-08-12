@@ -14,7 +14,7 @@ import {useFormStyles} from '../styles';
 const getBlocks = (state: AppState) => state.form.blocks;
 const getTabs = createSelector(
     [getBlocks],
-    blocks => blocks.map(({block}) => block),
+    blocks => blocks.map(({tab}) => tab),
 );
 
 const mapStateToProps = (state: AppState) => ({

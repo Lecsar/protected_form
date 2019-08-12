@@ -2,20 +2,21 @@ import React from 'react';
 import {Grid, Select, FormLabel, MenuItem} from '@material-ui/core';
 import {SelectProps} from '@material-ui/core/Select';
 import {useControlSelectStyles} from './ControlSelectStyles';
+import {withForm} from 'HOC';
 
-interface ControlSelectProps<T> extends SelectProps {
+interface ControlSelectProps<T> extends Omit<SelectProps, 'error'> {
     label?: string;
-    errorMessage?: string;
+    error?: boolean | string;
     options: T[];
     getOptionKey?: (option: T) => string;
     getOptionName?: (option: T) => string;
     getOptionValue?: (option: T) => string;
 }
 
-export const ControlSelect = <T extends {id: string}>({
+export const ControlSelectBase = <T extends {id: string}>({
     id,
     label = '',
-    errorMessage = '',
+    error = false,
     value,
     options = [],
     getOptionKey = o => o.id,
@@ -35,7 +36,8 @@ export const ControlSelect = <T extends {id: string}>({
                 id={htmlFor}
                 className={s.select}
                 classes={{root: s.root, icon: s.icon}}
-                value={value || getOptionValue(options[0])}
+                value={value}
+                error={!!error}
                 {...otherProps}
             >
                 {options.map(option => (
@@ -44,7 +46,9 @@ export const ControlSelect = <T extends {id: string}>({
                     </MenuItem>
                 ))}
             </Select>
-            {errorMessage && <FormLabel className={s.errorMessage}>{errorMessage}</FormLabel>}
+            {error && <FormLabel className={s.errorMessage}>{error}</FormLabel>}
         </Grid>
     );
 };
+
+export const ControlSelect = withForm(ControlSelectBase as any);

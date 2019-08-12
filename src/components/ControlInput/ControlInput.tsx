@@ -4,12 +4,12 @@ import {InputProps} from '@material-ui/core/Input';
 import FormLabel from '@material-ui/core/FormLabel';
 import {useInputStyles} from './style';
 
-interface ControlInputProps extends InputProps {
+interface ControlInputProps extends Omit<InputProps, 'error'> {
     label?: string;
-    errorMessage?: string;
+    error?: boolean | string;
 }
 
-export const ControlInput = ({label = '', errorMessage = '', id, ...props}: ControlInputProps) => {
+export const ControlInput = ({label = '', error = false, id, ...props}: ControlInputProps) => {
     const s = useInputStyles();
     const htmlId = `${label}-${id}`;
 
@@ -18,8 +18,8 @@ export const ControlInput = ({label = '', errorMessage = '', id, ...props}: Cont
             <FormLabel className={s.label} htmlFor={htmlId}>
                 {label}
             </FormLabel>
-            <BaseInput className={s.inputBlock} classes={{input: s.input}} id={htmlId} {...props} />
-            {errorMessage && <FormLabel className={s.errorMessage}>{errorMessage}</FormLabel>}
+            <BaseInput className={s.inputBlock} classes={{input: s.input}} id={htmlId} error={!!error} {...props} />
+            {error && <FormLabel className={s.errorMessage}>{error}</FormLabel>}
         </Grid>
     );
 };

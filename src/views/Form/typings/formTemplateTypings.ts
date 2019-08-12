@@ -1,4 +1,4 @@
-export interface Block {
+export interface TabData {
     id: string;
     name: string;
 }
@@ -16,7 +16,7 @@ export enum ValidationType {
 
 export interface ValidationRule {
     required: boolean;
-    type: ValidationType;
+    type?: ValidationType;
     regExp?: RegExp;
 }
 
@@ -26,36 +26,27 @@ export interface Option {
     value: string;
 }
 
-export interface BaseData {
+export interface Template {
     id: string;
     type: FieldType;
-    value: string;
     label: string;
     size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
     validationRule?: ValidationRule;
 }
 
-export interface InputData extends BaseData {
+export interface InputTemplate extends Template {
     type: FieldType.input;
     placeholder: string;
 }
 
-export interface SelectData extends BaseData {
+export interface SelectTemplate extends Template {
     type: FieldType.select;
     options: Option[];
 }
 
-export interface DataForValidation {
-    isDirty: boolean;
-    error: boolean;
-    errorMessage: string;
-}
+export type FieldTemplate = InputTemplate | SelectTemplate;
 
-export type FieldData = InputData | SelectData;
-
-export type ExtendedFieldData = FieldData & DataForValidation;
-
-export interface BlockData {
-    block: Block;
-    fields: FieldData[];
+export interface BlockTemplate {
+    tab: TabData;
+    fields: FieldTemplate[];
 }

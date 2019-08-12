@@ -1,12 +1,12 @@
 import React, {memo} from 'react';
 import {noop} from 'lodash';
 import {Grid, AppBar, Tabs, Tab} from '@material-ui/core';
-import {Block} from '../typings';
+import {TabData} from '../typings';
 import {useFormTabsStyles} from '../styles';
 
 interface FormTabsProps {
     activeTabId: string;
-    tabs: Block[];
+    tabs: TabData[];
     setTabActiveTabId: (id: string) => void;
 }
 

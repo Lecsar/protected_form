@@ -1,1 +1,2 @@
-export * from './blockData';
+export * from './mockData';
+export * from './mockTemplate';
