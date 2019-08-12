@@ -21,11 +21,21 @@ const enhanceStore = connect(mapStateToProps);
 type FormFieldsProps = TypeOfConnect<typeof enhanceStore>;
 
 export const FormFieldsBase = ({fields}: FormFieldsProps) => {
+    let sizeCounter = 0;
+
     return (
         <Grid container direction="row" wrap="wrap" spacing={2}>
-            {fields.map(field => (
-                <Field key={field.id} {...field as any} />
-            ))}
+            {fields.map(({withNewString, ...field}, index) => {
+                const fieldBlock = <Field key={field.id} {...field as any} />;
+
+                if (withNewString) {
+                    return [<Grid key={`empty-block-${index}`} item xs={(sizeCounter % 12) as any} />, fieldBlock];
+                }
+
+                sizeCounter += field.size || 6;
+
+                return fieldBlock;
+            })}
         </Grid>
     );
 };

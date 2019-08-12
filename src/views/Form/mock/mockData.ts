@@ -23,4 +23,9 @@ export const mockData: TabDataFromServer = {
         '5': '',
         '6': '',
     },
+    '3': {
+        '1': '',
+        '2': '',
+        '3': '',
+    },
 };

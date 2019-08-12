@@ -2,13 +2,18 @@ import {BlockData, FormAction, TabDataFromServer, BlockTemplate} from 'views/For
 import {mockData, mockTemplate} from 'views/Form/mock';
 import {SET_ACTIVE_TAB_ID, SET_FIELD_VALUE, VALIDATE_FIELD} from 'views/Form/const';
 import produce from 'immer';
-// import {extendFormData} from 'helpers';
 import {validate} from 'helpers';
 
 const mergeTemplateWithValue = (templates: BlockTemplate[], data: TabDataFromServer): BlockData[] =>
     templates.map(({tab, fields}) => ({
         tab,
-        fields: fields.map(field => ({...field, value: data[tab.id][field.id], error: false})),
+        fields: fields.map(field => ({
+            ...field,
+            value: data[tab.id][field.id],
+            error: false,
+            // withNewString: field.id === '3',
+            // shouldDisabled: () => true,
+        })),
     }));
 
 export interface FormReducer {

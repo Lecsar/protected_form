@@ -1,6 +1,7 @@
 import produce from 'immer';
 import {FormReducer} from 'reducers/form';
 import {ValidationType} from 'views/Form/typings';
+import {isNaN} from 'lodash';
 
 export const validate = (state: FormReducer, fieldId: string) =>
     produce(state, ({activeTabId, blocks}) => {
@@ -17,7 +18,7 @@ export const validate = (state: FormReducer, fieldId: string) =>
 
             switch (validationRule.type) {
                 case ValidationType.number:
-                    if (+value !== +value) {
+                    if (isNaN(+value)) {
                         currentField.error = 'Значение должно быть числом';
                         return;
                     }
