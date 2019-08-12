@@ -6,6 +6,7 @@ export interface TabData {
 export enum FieldType {
     input = 'input',
     select = 'select',
+    file = 'file',
 }
 
 export enum ValidationType {
@@ -44,7 +45,11 @@ export interface SelectTemplate extends Template {
     options: Option[];
 }
 
-export type FieldTemplate = InputTemplate | SelectTemplate;
+export interface FileTemplate extends Template {
+    type: FieldType.file;
+}
+
+export type FieldTemplate = InputTemplate | SelectTemplate | FileTemplate;
 
 export interface BlockTemplate {
     tab: TabData;

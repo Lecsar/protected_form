@@ -108,10 +108,12 @@ export const mockTemplate: BlockTemplate[] = [
             },
             {
                 id: '12',
-                type: FieldType.input,
+                type: FieldType.file,
                 label: 'ОГРН',
-                placeholder: 'Пожалуйста введите ОГРН компании',
-                size: 4,
+                size: 12,
+                validationRule: {
+                    required: true,
+                },
             },
         ],
     },

@@ -12,7 +12,6 @@ export interface TabDataFromServer {
 export interface FieldData {
     value: string;
     error: false | string;
-    withNewString?: boolean;
     onChange?: (e: React.ChangeEvent<any>) => void;
     onBlur?: (e: React.SyntheticEvent) => void;
     shouldDisabled?: (state: FormReducer) => boolean;

@@ -1,7 +1,7 @@
 /* eslint-disable  react-hooks/exhaustive-deps */
 import React, {memo} from 'react';
 import {Grid} from '@material-ui/core';
-import {ControlInput, ControlSelect} from 'components';
+import {ControlInput, ControlSelect, Dropzone} from 'components';
 import {areEqual} from 'helpers';
 import {withForm} from 'HOC';
 import {ExtendedFieldData, FieldType} from '../typings';
@@ -17,6 +17,8 @@ export const BaseField = ({type, validationRule, size, ...props}: FieldProps) =>
                 return ControlInput;
             case FieldType.select:
                 return ControlSelect;
+            case FieldType.file:
+                return Dropzone;
             default:
                 console.error('Неизвестный FieldType');
                 return () => null;
