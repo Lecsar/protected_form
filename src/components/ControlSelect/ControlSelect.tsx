@@ -13,7 +13,7 @@ interface ControlSelectProps<T> extends Omit<SelectProps, 'error'> {
     getOptionValue?: (option: T) => string;
 }
 
-export const ControlSelectBase = <T extends {id: string}>({
+export const ControlSelect = <T extends {id: string}>({
     id,
     label = '',
     error = false,
@@ -51,4 +51,4 @@ export const ControlSelectBase = <T extends {id: string}>({
     );
 };
 
-export const ControlSelect = withForm(ControlSelectBase as any);
+export const ControlSelectWithForm = withForm(ControlSelect as any);

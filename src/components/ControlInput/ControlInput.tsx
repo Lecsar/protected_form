@@ -3,6 +3,7 @@ import {Input as BaseInput, Grid} from '@material-ui/core';
 import {InputProps} from '@material-ui/core/Input';
 import FormLabel from '@material-ui/core/FormLabel';
 import {useInputStyles} from './style';
+import { withForm } from 'HOC';
 
 interface ControlInputProps extends Omit<InputProps, 'error'> {
     label?: string;
@@ -23,3 +24,5 @@ export const ControlInput = ({label = '', error = false, id, ...props}: ControlI
         </Grid>
     );
 };
+
+export const ControlInputWithForm = withForm(ControlInput);

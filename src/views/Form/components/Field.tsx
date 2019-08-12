@@ -1,22 +1,21 @@
 /* eslint-disable  react-hooks/exhaustive-deps */
 import React, {memo} from 'react';
 import {Grid} from '@material-ui/core';
-import {ControlInput, ControlSelect, Dropzone} from 'components';
+import {Dropzone, ControlInputWithForm, ControlSelectWithForm} from 'components';
 import {areEqual} from 'helpers';
-import {withForm} from 'HOC';
 import {ExtendedFieldData, FieldType} from '../typings';
 
 type FieldProps = ExtendedFieldData;
 
 const DEFAULT_FIELD_SIZE = 6;
 
-export const BaseField = ({type, validationRule, size, ...props}: FieldProps) => {
+export const FormField = ({type, validationRule, size, ...props}: FieldProps) => {
     const createField = (type: FieldType) => {
         switch (type) {
             case FieldType.input:
-                return ControlInput;
+                return ControlInputWithForm;
             case FieldType.select:
-                return ControlSelect;
+                return ControlSelectWithForm;
             case FieldType.file:
                 return Dropzone;
             default:
@@ -36,5 +35,4 @@ export const BaseField = ({type, validationRule, size, ...props}: FieldProps) =>
     );
 };
 
-const FormField = withForm(BaseField);
 export const Field = memo(FormField, areEqual);
