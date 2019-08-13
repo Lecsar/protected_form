@@ -1,6 +1,6 @@
-import {BlockData, FormAction, TabDataFromServer, BlockTemplate} from 'views/Form/typings';
+import {BlockData, FormAction, TabDataFromServer, BlockTemplate, FieldType} from 'views/Form/typings';
 import {mockData, mockTemplate} from 'views/Form/mock';
-import {SET_ACTIVE_TAB_ID, SET_FIELD_VALUE, VALIDATE_FIELD} from 'views/Form/const';
+import {SET_ACTIVE_TAB_ID, SET_FIELD_VALUE, VALIDATE_FIELD, LOAD_FILE_REQUEST} from 'views/Form/const';
 import produce from 'immer';
 import {validate} from 'helpers';
 
@@ -9,7 +9,10 @@ const mergeTemplateWithValue = (templates: BlockTemplate[], data: TabDataFromSer
         tab,
         fields: fields.map(field => ({
             ...field,
-            value: data[tab.id][field.id],
+            value:
+                field.type === FieldType.file
+                    ? []
+                    : data[tab.id][field.id],
             error: false,
             // withNewString: field.id === '3',
             // shouldDisabled: () => true,
@@ -39,6 +42,16 @@ export default (state = initialState, action: FormAction): FormReducer => {
             });
         case VALIDATE_FIELD:
             return validate(state, action.fieldId);
+        case LOAD_FILE_REQUEST:
+            return produce(state, draft => {
+                const activeBlock = draft.blocks.find(item => draft.activeTabId === item.tab.id)!;
+                const currentField = activeBlock.fields.find(({id}) => action.fieldId === id)!;
+                if (Array.isArray(currentField.value)) {
+                    currentField.value = currentField.value
+                        ? [...currentField.value, ...action.filesData]
+                        : action.filesData;
+                }
+            });
         default:
             return state;
     }

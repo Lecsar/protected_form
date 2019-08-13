@@ -9,8 +9,13 @@ export interface TabDataFromServer {
     [x: string]: TabId;
 }
 
+export interface FileData {
+    id: string;
+    name: string;
+}
+
 export interface FieldData {
-    value: string;
+    value: string | FileData[];
     error: false | string;
     onChange?: (e: React.ChangeEvent<any>) => void;
     onBlur?: (e: React.SyntheticEvent) => void;

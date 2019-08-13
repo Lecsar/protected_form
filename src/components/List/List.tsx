@@ -1,24 +1,44 @@
-import React, {RefObject} from 'react';
+import React from 'react';
 
-import s from './list.module.less';
-import {Post as PostType} from '../../typings';
-import {Post} from '../';
+import {useListStyles} from './ListStyles';
+import {ListItem, ListItemIcon, Checkbox, ListItemText, List as ListBase} from '@material-ui/core';
 
-interface ListProps {
-    title: string;
-    posts: PostType[];
-    onLazyLoading?: () => void;
-    forwaredRef: RefObject<HTMLDivElement>;
+interface ListProps<T> {
+    options: T[];
+    getOptionKey?: (o: T) => string;
+    getOptionLabel?: (o: T) => string;
 }
 
-export const List = ({forwaredRef, title, posts}: ListProps) => (
-    <div ref={forwaredRef}>
-        <h1>{title}</h1>
+export const List = <T extends {}>({
+    options = [],
+    getOptionKey = (o: any) => o.id,
+    getOptionLabel = (o: any) => o.name,
+}: ListProps<T>) => {
+    const s = useListStyles();
 
-        <section className={s.posts}>
-            {posts.map((post, index) => (
-                <Post key={index} index={index} {...post} />
-            ))}
-        </section>
-    </div>
-);
+    return (
+        <ListBase>
+            {options.map(option => {
+                const id = getOptionKey(option);
+                const label = getOptionLabel(option);
+                const labelId = `checkbox-list-label-${label}`;
+
+                return (
+                    <ListItem key={id} dense button={false}>
+                        <ListItemIcon>
+                            <Checkbox
+                                edge="start"
+                                // classes={{root: }}
+                                // checked={checked.indexOf(value) !== -1}
+                                tabIndex={-1}
+                                // disableRipple
+                                inputProps={{'aria-labelledby': labelId}}
+                            />
+                        </ListItemIcon>
+                        <ListItemText className={s.text} classes={{primary: s.primary}} id={labelId} primary={label} />
+                    </ListItem>
+                );
+            })}
+        </ListBase>
+    );
+};

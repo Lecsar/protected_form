@@ -4,12 +4,11 @@ import {bindActionCreators, Dispatch} from 'redux';
 import {compose, lifecycle} from 'recompose';
 
 import {AppState} from '../../store';
-import {TypeOfConnect, Post} from '../../typings';
+import {TypeOfConnect} from '../../typings';
 import {onLogOut, onLoadPosts} from './actions/appActions';
 
 // import Button from '../../components/Button';
-import {List} from '../../components';
-import withLazyLoading from '../../HOC/withLazyLoading';
+// import withLazyLoading from '../../HOC/withLazyLoading';
 import s from './styles/App.module.less';
 
 const mapStateToProps = ({app}: AppState) => ({...app});
@@ -35,18 +34,18 @@ const enhancer = compose<AppProps, Outter>(
 );
 
 const App = ({error, posts, onLogOut, onLoadPosts}: AppProps) => {
-    const ListWithLazyLoading = withLazyLoading<{title: string; posts: Post[]}>({
-        onLazyLoading: onLoadPosts,
-        connectedProps: {
-            title: 'Список статей:',
-            posts,
-            watchedPropName: 'posts',
-        },
-    })(List);
+    // const ListWithLazyLoading = withLazyLoading<{title: string; posts: Post[]}>({
+    //     onLazyLoading: onLoadPosts,
+    //     connectedProps: {
+    //         title: 'Список статей:',
+    //         posts,
+    //         watchedPropName: 'posts',
+    //     },
+    // })(List);
 
     return (
         <div className={s.App}>
-            {ListWithLazyLoading}
+            {/* {ListWithLazyLoading} */}
 
             <hr />
 

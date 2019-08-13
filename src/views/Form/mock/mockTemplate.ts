@@ -113,7 +113,7 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 12,
                 validationRule: {
                     required: true,
-                },
+                }
             },
         ],
     },

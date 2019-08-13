@@ -1,7 +1,7 @@
 /* eslint-disable  react-hooks/exhaustive-deps */
 import React, {memo} from 'react';
 import {Grid} from '@material-ui/core';
-import {Dropzone, ControlInputWithForm, ControlSelectWithForm} from 'components';
+import {DropzoneWithLoad, ControlInputWithForm, ControlSelectWithForm} from 'components';
 import {areEqual} from 'helpers';
 import {ExtendedFieldData, FieldType} from '../typings';
 
@@ -9,7 +9,7 @@ type FieldProps = ExtendedFieldData;
 
 const DEFAULT_FIELD_SIZE = 6;
 
-export const FormField = ({type, validationRule, size, ...props}: FieldProps) => {
+export const FormField = ({type, size, ...props}: FieldProps) => {
     const createField = (type: FieldType) => {
         switch (type) {
             case FieldType.input:
@@ -17,7 +17,7 @@ export const FormField = ({type, validationRule, size, ...props}: FieldProps) =>
             case FieldType.select:
                 return ControlSelectWithForm;
             case FieldType.file:
-                return Dropzone;
+                return DropzoneWithLoad;
             default:
                 console.error('Неизвестный FieldType');
                 return () => null;
