@@ -4,9 +4,9 @@ import {ValidationType} from 'views/Form/typings';
 import {isNaN} from 'lodash';
 
 export const validate = (state: FormReducer, fieldId: string) =>
-    produce(state, ({activeTabId, blocks}) => {
-        const {fields} = blocks.find(({tab: {id}}) => activeTabId === id)!;
-        const currentField = fields.find(({id}) => fieldId === id)!;
+    produce(state, ({activeTabId, tabs}) => {
+        const {fields} = tabs.find(({tab: {_id}}) => activeTabId === _id)!;
+        const currentField = fields.find(({_id}) => fieldId === _id)!;
 
         if (currentField.validationRule) {
             const {value, validationRule} = currentField;

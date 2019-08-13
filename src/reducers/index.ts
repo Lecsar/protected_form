@@ -6,5 +6,6 @@ import login from './login';
 import app from './app';
 import form from './form';
 import chat from './chat';
+import cabinet from './cabinet';
 
-export default (history: History) => combineReducers({router: connectRouter(history), login, app, form, chat});
+export default (history: History) => combineReducers({router: connectRouter(history), login, app, form, chat, cabinet});

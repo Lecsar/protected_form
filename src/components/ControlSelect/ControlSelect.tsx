@@ -13,13 +13,13 @@ interface ControlSelectProps<T> extends Omit<SelectProps, 'error'> {
     getOptionValue?: (option: T) => string;
 }
 
-export const ControlSelect = <T extends {id: string}>({
+export const ControlSelect = <T extends {}>({
     id,
     label = '',
     error = false,
     value,
     options = [],
-    getOptionKey = o => o.id,
+    getOptionKey = (o: any) => o._id,
     getOptionName = (o: any) => o.name,
     getOptionValue = (o: any) => o.value,
     ...otherProps

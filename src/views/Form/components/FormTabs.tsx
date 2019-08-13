@@ -30,7 +30,7 @@ export const FormTabsBase = ({activeTabId, tabs = [], setTabActiveTabId = noop}:
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    {tabs.map(({id, name}, index) => (
+                    {tabs.map(({_id: id, name}, index) => (
                         <Tab key={id} className={s.tab} label={name} value={id} {...a11yProps(index)} />
                     ))}
                 </Tabs>

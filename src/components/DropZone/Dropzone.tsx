@@ -28,7 +28,6 @@ export const Dropzone = ({
     error = false,
     disabled = false,
     onDrop = noop,
-    ...otherProps
 }: DropzoneProps) => {
     const s = useDropzoneStyles();
     const hasFiles = value && value.length > 0;

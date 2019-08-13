@@ -6,7 +6,8 @@ import {
     LOAD_FILE_SUCCESS,
     LOAD_FILE_ERROR,
 } from '../const';
-import {FileData} from './formDataTypings';
+import {FileData, TabFormData} from './formDataTypings';
+import {LOAD_TEMPLATE_SUCCESS} from 'views/Cabinet/const';
 
 export interface SetActiveTab {
     type: typeof SET_ACTIVE_TAB_ID;
@@ -38,7 +39,13 @@ export interface LoadFileError {
     type: typeof LOAD_FILE_ERROR;
 }
 
+export interface LoadTemplateSuccess {
+    type: typeof LOAD_TEMPLATE_SUCCESS;
+    tabs: TabFormData[];
+}
+
 export type FormAction =
+    | LoadTemplateSuccess
     | SetActiveTab
     | SetFieldValue
     | ValidateField

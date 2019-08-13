@@ -7,7 +7,7 @@ import {ExtendedFieldData, FieldType} from '../typings';
 
 type FieldProps = ExtendedFieldData;
 
-const DEFAULT_FIELD_SIZE = 6;
+const DEFAULT_FIELD_SIZE = 12;
 
 export const FormField = ({type, size, ...props}: FieldProps) => {
     const createField = (type: FieldType) => {
@@ -27,7 +27,7 @@ export const FormField = ({type, size, ...props}: FieldProps) => {
     const Field = createField(type);
 
     return (
-        <Grid item xs={size || DEFAULT_FIELD_SIZE}>
+        <Grid item xs={DEFAULT_FIELD_SIZE}>
             <Grid item>
                 <Field {...props as any} />
             </Grid>

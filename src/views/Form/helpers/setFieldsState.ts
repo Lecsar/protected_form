@@ -2,8 +2,8 @@ import {FormReducer} from 'reducers/form';
 import {ExtendedFieldData} from '../typings';
 
 export const setFieldsState = (formState: FormReducer) =>
-    formState.blocks
-        .find(({tab: {id}}) => formState.activeTabId === id)!
+    formState.tabs
+        .find(({tab: {_id}}) => formState.activeTabId === _id)!
         .fields.reduce(
             (acc, {shouldRender, shouldDisabled, ...field}) => {
                 if (!shouldRender || shouldRender(formState)) {

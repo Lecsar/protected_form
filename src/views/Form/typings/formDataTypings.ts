@@ -2,11 +2,18 @@ import {FormReducer} from 'reducers/form';
 import {TabData, FieldTemplate} from './formTemplateTypings';
 
 interface TabId {
-    [x: string]: string;
+    [fieldId: string]: string;
 }
 
 export interface TabDataFromServer {
-    [x: string]: TabId;
+    [tabId: string]: TabId;
+}
+
+export interface TemplateData {
+    userId: string;
+    templateId: string;
+    orgId: string;
+    data: TabDataFromServer;
 }
 
 export interface FileData {
@@ -25,7 +32,7 @@ export interface FieldData {
 
 export type ExtendedFieldData = FieldData & FieldTemplate;
 
-export interface BlockData {
+export interface TabFormData {
     tab: TabData;
     fields: ExtendedFieldData[];
 }

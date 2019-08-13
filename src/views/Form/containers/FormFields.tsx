@@ -24,7 +24,7 @@ export const FormFieldsBase = ({fields}: FormFieldsProps) => {
     return (
         <Grid container direction="row" wrap="wrap" spacing={2}>
             {fields.map(field => (
-                <Field key={field.id} {...field as any} />
+                <Field key={field._id} {...field as any} />
             ))}
         </Grid>
     );

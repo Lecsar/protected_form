@@ -1,14 +1,12 @@
-import {BlockTemplate, FieldType, ValidationType} from '../typings';
+import {TabTemplate, FieldType, ValidationType} from '../typings';
 
-export const mockTemplate: BlockTemplate[] = [
+export const mockTemplate: TabTemplate[] = [
     {
-        tab: {
-            id: '1',
-            name: 'Общее',
-        },
+        _id: '1',
+        name: 'Общее',
         fields: [
             {
-                id: '1',
+                _id: '1',
                 type: FieldType.input,
                 label: 'ИНН',
                 placeholder: 'Пожалуйста введите ИНН компании',
@@ -19,7 +17,7 @@ export const mockTemplate: BlockTemplate[] = [
                 },
             },
             {
-                id: '2',
+                _id: '2',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -30,7 +28,7 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 3,
             },
             {
-                id: '3',
+                _id: '3',
                 type: FieldType.select,
                 label: 'Стадия реализации проекта',
                 options: [
@@ -44,15 +42,15 @@ export const mockTemplate: BlockTemplate[] = [
                 },
             },
             {
-                id: '4',
+                _id: '4',
                 type: FieldType.input,
                 label: 'ОГРН',
                 placeholder: 'Пожалуйста введите ОГРН компании',
                 size: 3,
             },
-            {id: '5', type: FieldType.input, label: 'ИНН', placeholder: 'Пожалуйста введите ИНН компании'},
+            {_id: '5', type: FieldType.input, label: 'ИНН', placeholder: 'Пожалуйста введите ИНН компании'},
             {
-                id: '6',
+                _id: '6',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -62,7 +60,7 @@ export const mockTemplate: BlockTemplate[] = [
                 ],
             },
             {
-                id: '7',
+                _id: '7',
                 type: FieldType.select,
                 label: 'Стадия реализации проекта',
                 options: [
@@ -72,20 +70,20 @@ export const mockTemplate: BlockTemplate[] = [
                 ],
             },
             {
-                id: '8',
+                _id: '8',
                 type: FieldType.input,
                 label: 'ОГРН',
                 placeholder: 'Пожалуйста введите ОГРН компании',
             },
             {
-                id: '9',
+                _id: '9',
                 type: FieldType.input,
                 label: 'ИНН',
                 placeholder: 'Пожалуйста введите ИНН компании',
                 size: 4,
             },
             {
-                id: '10',
+                _id: '10',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -96,7 +94,7 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 4,
             },
             {
-                id: '11',
+                _id: '11',
                 type: FieldType.select,
                 label: 'Стадия реализации проекта',
                 options: [
@@ -107,24 +105,22 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 4,
             },
             {
-                id: '12',
+                _id: '12',
                 type: FieldType.file,
                 label: 'ОГРН',
                 size: 12,
                 validationRule: {
                     required: true,
-                }
+                },
             },
         ],
     },
     {
-        tab: {
-            id: '2',
-            name: 'Характеристики',
-        },
+        _id: '2',
+        name: 'Характеристики',
         fields: [
             {
-                id: '1',
+                _id: '1',
                 type: FieldType.input,
                 label: 'ИНН',
                 placeholder: 'Пожалуйста введите ИНН компании',
@@ -135,7 +131,7 @@ export const mockTemplate: BlockTemplate[] = [
                 },
             },
             {
-                id: '2',
+                _id: '2',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -146,7 +142,7 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 3,
             },
             {
-                id: '3',
+                _id: '3',
                 type: FieldType.select,
                 label: 'Стадия реализации проекта',
                 options: [
@@ -160,15 +156,15 @@ export const mockTemplate: BlockTemplate[] = [
                 },
             },
             {
-                id: '4',
+                _id: '4',
                 type: FieldType.input,
                 label: 'ОГРН',
                 placeholder: 'Пожалуйста введите ОГРН компании',
                 size: 3,
             },
-            {id: '5', type: FieldType.input, label: 'ИНН', placeholder: 'Пожалуйста введите ИНН компании'},
+            {_id: '5', type: FieldType.input, label: 'ИНН', placeholder: 'Пожалуйста введите ИНН компании'},
             {
-                id: '6',
+                _id: '6',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -180,13 +176,11 @@ export const mockTemplate: BlockTemplate[] = [
         ],
     },
     {
-        tab: {
-            id: '3',
-            name: 'Свойства',
-        },
+        _id: '3',
+        name: 'Свойства',
         fields: [
             {
-                id: '1',
+                _id: '1',
                 type: FieldType.input,
                 label: 'ИНН',
                 placeholder: 'Пожалуйста введите ИНН компании',
@@ -197,7 +191,7 @@ export const mockTemplate: BlockTemplate[] = [
                 },
             },
             {
-                id: '2',
+                _id: '2',
                 type: FieldType.select,
                 label: 'Субъект РФ',
                 options: [
@@ -208,7 +202,7 @@ export const mockTemplate: BlockTemplate[] = [
                 size: 3,
             },
             {
-                id: '3',
+                _id: '3',
                 type: FieldType.select,
                 label: 'Стадия реализации проекта',
                 options: [

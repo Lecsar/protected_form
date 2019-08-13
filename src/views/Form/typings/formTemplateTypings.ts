@@ -1,18 +1,18 @@
 export interface TabData {
-    id: string;
+    _id: string;
     name: string;
 }
 
 export enum FieldType {
-    input = 'input',
-    select = 'select',
-    file = 'file',
+    input = 'Input',
+    select = 'Select',
+    file = 'File',
 }
 
 export enum ValidationType {
-    number,
-    string,
-    boolean,
+    number = 'Number',
+    string = 'String',
+    boolean = 'Boolean',
 }
 
 export interface ValidationRule {
@@ -28,7 +28,7 @@ export interface Option {
 }
 
 export interface Template {
-    id: string;
+    _id: string;
     type: FieldType;
     label: string;
     size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -51,7 +51,8 @@ export interface FileTemplate extends Template {
 
 export type FieldTemplate = InputTemplate | SelectTemplate | FileTemplate;
 
-export interface BlockTemplate {
-    tab: TabData;
+export interface TabTemplate {
+    _id: string;
+    name: string;
     fields: FieldTemplate[];
 }

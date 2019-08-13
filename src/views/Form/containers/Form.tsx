@@ -8,10 +8,10 @@ import {createSelector} from 'reselect';
 import {Grid} from '@material-ui/core';
 import {setActiveTabId} from '../actions';
 import {FormTabs} from '../components/FormTabs';
-import {FormFields} from './FormFields';
 import {useFormStyles} from '../styles';
+import {FormFields} from './FormFields';
 
-const getBlocks = (state: AppState) => state.form.blocks;
+const getBlocks = (state: AppState) => state.form.tabs;
 const getTabs = createSelector(
     [getBlocks],
     blocks => blocks.map(({tab}) => tab),

@@ -21,7 +21,7 @@ type FormComponentProps = TypeOfConnect<typeof enhanceStore> &
 
 const FormComponent = ({
     WrappedComponent,
-    id,
+    _id: id,
     loadFiles,
     validationRule,
     onDrop = noop,

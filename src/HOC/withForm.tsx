@@ -20,7 +20,7 @@ type FormComponentProps = TypeOfConnect<typeof enhanceStore> &
 
 const FormComponent = ({
     WrappedComponent,
-    id,
+    _id,
     validationRule,
     onChange = noop,
     onBlur = noop,
@@ -30,25 +30,25 @@ const FormComponent = ({
 }: FormComponentProps) => {
     const onChangeWithSetValue = useCallback(
         (e: React.ChangeEvent<any>) => {
-            setFieldValue(id, e.target.value);
+            setFieldValue(_id, e.target.value);
 
             onChange(e);
         },
-        [id, onChange, setFieldValue],
+        [_id, onChange, setFieldValue],
     );
 
     const onBlurWithValidate = useCallback(
         (e: React.SyntheticEvent) => {
             if (validationRule) {
-                validateField(id);
+                validateField(_id);
             }
 
             onBlur(e);
         },
-        [id, validationRule, onBlur, validateField],
+        [_id, validationRule, onBlur, validateField],
     );
 
-    return <WrappedComponent id={id} {...props} onChange={onChangeWithSetValue} onBlur={onBlurWithValidate} />;
+    return <WrappedComponent _id={_id} {...props} onChange={onChangeWithSetValue} onBlur={onBlurWithValidate} />;
 };
 
 const FormComponentWithStore = enhanceStore(FormComponent);

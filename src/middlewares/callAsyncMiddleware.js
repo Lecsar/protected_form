@@ -22,6 +22,11 @@ export default ({dispatch, getState}) => next => action => {
     dispatch({...payload, type: requestType});
 
     return callAPI()
-        .then(response => dispatch({...payload, type: successType, response}))
-        .catch(error => dispatch({...payload, type: failureType, error}));
+        .then(response => {
+            dispatch({...payload, type: successType, response});
+        })
+        .catch(error => {
+            console.error(error);
+            dispatch({...payload, type: failureType, error});
+        });
 };
