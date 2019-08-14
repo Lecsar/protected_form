@@ -25,7 +25,7 @@ export interface ValidateField {
     fieldId: string;
 }
 
-export interface LoadFilesRequest {
+export interface LoadFileRequest {
     type: typeof LOAD_FILE_REQUEST;
     fieldId: string;
     filesData: FileData[];
@@ -33,10 +33,15 @@ export interface LoadFilesRequest {
 
 export interface LoadFileSuccess {
     type: typeof LOAD_FILE_SUCCESS;
+    fieldId: string;
+    fileId: string;
 }
 
 export interface LoadFileError {
     type: typeof LOAD_FILE_ERROR;
+    fieldId: string;
+    fileId: string;
+    error: boolean;
 }
 
 export interface LoadTemplateSuccess {
@@ -49,6 +54,6 @@ export type FormAction =
     | SetActiveTab
     | SetFieldValue
     | ValidateField
-    | LoadFilesRequest
+    | LoadFileRequest
     | LoadFileSuccess
     | LoadFileError;

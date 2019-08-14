@@ -34,7 +34,9 @@ const BaseCabinet = ({isLoading, templates, loadTemplatesList, loadTemplate}: Ba
 
             <CabinetHeader />
             <Grid component="section" item container direction="column" xs={8} wrap="nowrap">
-                <Typography variant="h4">Список доступных шаблонов:</Typography>
+                <Typography variant="h4">
+                    {templates.length ? 'Список доступных шаблонов:' : 'Нет доступных шаблонов'}
+                </Typography>
                 <List<TemplateInfo> options={templates} isButton onOptionClick={loadTemplate} />
             </Grid>
         </Grid>

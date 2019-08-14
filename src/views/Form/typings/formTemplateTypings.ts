@@ -22,7 +22,7 @@ export interface ValidationRule {
 }
 
 export interface Option {
-    id: string;
+    _id: string;
     name: string;
     value: string;
 }

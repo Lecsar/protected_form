@@ -22,7 +22,7 @@ const initialState: ChatState = {
     error: false,
 };
 
-export default (state = initialState, action: ChatAction): ChatState => {
+export const chatReducer = (state = initialState, action: ChatAction): ChatState => {
     switch (action.type) {
         case CHAT_CONNECT_REQUEST:
             return {...state, isConnecting: true};

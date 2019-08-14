@@ -1,4 +1,4 @@
-import {FormReducer} from 'reducers/form';
+import {FormReducer} from 'reducers/formReducer';
 import {ExtendedFieldData} from '../typings';
 
 export const setFieldsState = (formState: FormReducer) =>

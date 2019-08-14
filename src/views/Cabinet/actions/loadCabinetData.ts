@@ -1,6 +1,7 @@
 import {Dispatch} from 'redux';
-import {API_ADRESS, ROUTING, SUCCESS_STATUS} from 'const';
+import {ROUTING, SUCCESS_STATUS} from 'const';
 import {TemplateData} from 'views/Form/typings';
+import {urlMap} from 'api';
 import {
     LOAD_TEMPLATES_LIST_REQUEST,
     LOAD_TEMPLATES_LIST_SUCCESS,
@@ -15,7 +16,7 @@ import {TemplateInfo, Template} from '../typings';
 export const loadTemplatesList = () => ({
     types: [LOAD_TEMPLATES_LIST_REQUEST, LOAD_TEMPLATES_LIST_SUCCESS, LOAD_TEMPLATES_LIST_ERROR],
     callAPI: async () => {
-        const response = await fetch(`${API_ADRESS}/templates/list`);
+        const response = await fetch(urlMap.getTemplatesList());
         return await response.json();
     },
 });
@@ -23,7 +24,7 @@ export const loadTemplatesList = () => ({
 export const loadTemplate = ({_id}: TemplateInfo) => (dispatch: Dispatch) => {
     dispatch({type: LOAD_TEMPLATE_REQUEST});
 
-    const templateRequest: Promise<Template> = fetch(`${API_ADRESS}/templates/${_id}`)
+    const templateRequest: Promise<Template> = fetch(urlMap.getTemplate(_id))
         .then(res => res.json())
         .catch(error => {
             console.error(error);
@@ -31,7 +32,7 @@ export const loadTemplate = ({_id}: TemplateInfo) => (dispatch: Dispatch) => {
             return [];
         });
 
-    const dataRequest: Promise<TemplateData | {data: null}> = fetch(`${API_ADRESS}/data/${_id}`)
+    const dataRequest: Promise<TemplateData | {data: null}> = fetch(urlMap.getTemplateData(_id))
         .then(res => {
             if (res.status === SUCCESS_STATUS) {
                 return res.json();

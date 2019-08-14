@@ -19,7 +19,7 @@ const initialState: CabinetReducer = {
     templates: [],
 };
 
-export default (state = initialState, action: CabinetAction): CabinetReducer => {
+export const cabinetReducer = (state = initialState, action: CabinetAction): CabinetReducer => {
     switch (action.type) {
         case LOAD_TEMPLATES_LIST_REQUEST:
             return {...state, isLoading: true};

@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {FormReducer} from 'reducers/form';
+import {FormReducer} from 'reducers/formReducer';
 import {ValidationType} from 'views/Form/typings';
 import {isNaN} from 'lodash';
 

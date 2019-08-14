@@ -1,4 +1,4 @@
-import {TabTemplate, FieldType, TabDataFromServer, TabFormData, FieldData} from 'views/Form/typings';
+import {TabTemplate, FieldType, TabDataFromServer, TabFormData, FieldData, FileData} from 'views/Form/typings';
 
 interface DataOptions {
     tabId: string;
@@ -9,6 +9,7 @@ interface DataOptions {
 const setDefaultData = (fieldType: FieldType) => {
     switch (fieldType) {
         case FieldType.file:
+            // return [{_id: '6432876432', name: 'test', error: true}] as FileData[];
             return [];
         default:
             return '';

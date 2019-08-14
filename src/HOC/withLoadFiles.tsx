@@ -2,15 +2,17 @@ import React, {useCallback} from 'react';
 import {Dispatch, bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {noop} from 'lodash';
+import {AppState} from 'store';
 import {loadFiles} from 'views/Form/actions';
 import {FileTemplate} from 'views/Form/typings';
 import {TypeOfConnect} from 'typings';
 import {DropzoneProps} from 'components';
 
+const mapStateToProps = ({form: {templateId, activeTabId}}: AppState) => ({templateId, activeTabId});
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({loadFiles}, dispatch);
 
 const enhanceStore = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 );
 
@@ -21,7 +23,9 @@ type FormComponentProps = TypeOfConnect<typeof enhanceStore> &
 
 const FormComponent = ({
     WrappedComponent,
-    _id: id,
+    _id,
+    templateId,
+    activeTabId,
     loadFiles,
     validationRule,
     onDrop = noop,
@@ -29,13 +33,13 @@ const FormComponent = ({
 }: FormComponentProps) => {
     const onDropFiles = useCallback(
         (acceptedFiles: File[]) => {
-            loadFiles(id, acceptedFiles);
+            loadFiles(templateId, activeTabId!, _id, acceptedFiles);
             onDrop(acceptedFiles);
         },
-        [id, loadFiles, onDrop],
+        [templateId, activeTabId, _id, loadFiles, onDrop],
     );
 
-    return <WrappedComponent id={id} {...props} onDrop={onDropFiles} />;
+    return <WrappedComponent {...props} onDrop={onDropFiles} />;
 };
 
 const FormComponentWithStore = enhanceStore(FormComponent);

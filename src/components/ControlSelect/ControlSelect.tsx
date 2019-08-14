@@ -4,7 +4,8 @@ import {SelectProps} from '@material-ui/core/Select';
 import {useControlSelectStyles} from './ControlSelectStyles';
 import {withForm} from 'HOC';
 
-interface ControlSelectProps<T> extends Omit<SelectProps, 'error'> {
+interface ControlSelectProps<T> extends Omit<SelectProps, 'error' | 'id'> {
+    _id: string;
     label?: string;
     error?: boolean | string;
     options: T[];
@@ -14,7 +15,7 @@ interface ControlSelectProps<T> extends Omit<SelectProps, 'error'> {
 }
 
 export const ControlSelect = <T extends {}>({
-    id,
+    _id,
     label = '',
     error = false,
     value,
@@ -25,7 +26,7 @@ export const ControlSelect = <T extends {}>({
     ...otherProps
 }: ControlSelectProps<T>) => {
     const s = useControlSelectStyles();
-    const htmlFor = `${label}-${id}`;
+    const htmlFor = `${label}-${_id}`;
 
     return (
         <Grid item container direction="column" xs={12}>
@@ -41,7 +42,7 @@ export const ControlSelect = <T extends {}>({
                 {...otherProps}
             >
                 {options.map(option => (
-                    <MenuItem className={s.option} key={getOptionKey(option)} value={getOptionValue(option)}>
+                    <MenuItem key={getOptionKey(option)} className={s.option} value={getOptionValue(option)}>
                         {getOptionName(option)}
                     </MenuItem>
                 ))}

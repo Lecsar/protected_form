@@ -6,3 +6,5 @@ export * from './ControlSelect/ControlSelect';
 export * from './Post/Post';
 export * from './Spinner/Spinner';
 export * from './List/List';
+export * from './ListItem/ListItem';
+export * from './File/File';

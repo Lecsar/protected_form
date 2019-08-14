@@ -1,4 +1,4 @@
-import {FormReducer} from 'reducers/form';
+import {FormReducer} from 'reducers/formReducer';
 import {TabData, FieldTemplate} from './formTemplateTypings';
 
 interface TabId {
@@ -17,8 +17,10 @@ export interface TemplateData {
 }
 
 export interface FileData {
-    id: string;
+    _id: string;
     name: string;
+    isLoading?: boolean;
+    error?: boolean;
 }
 
 export interface FieldData {

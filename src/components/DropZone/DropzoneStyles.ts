@@ -15,7 +15,6 @@ export const useDropzoneStyles = makeStyles({
         fontSize: '30px',
         boxSizing: 'border-box',
         outline: 'none',
-        cursor: 'pointer',
     },
 
     placeholder: {
@@ -30,5 +29,9 @@ export const useDropzoneStyles = makeStyles({
 
     dropzoneDisabled: {
         opacity: 0.6,
+    },
+
+    dropzoneCursor: {
+        cursor: 'pointer',
     },
 });
