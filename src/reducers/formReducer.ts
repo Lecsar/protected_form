@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {TabFormData, FormAction, FieldData, FileData} from 'views/Form/typings';
+import {TabFormData, FormAction, FileData} from 'views/Form/typings';
 import {
     SET_ACTIVE_TAB_ID,
     SET_FIELD_VALUE,

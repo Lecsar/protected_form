@@ -1,4 +1,4 @@
-import {TabTemplate, FieldType, TabDataFromServer, TabFormData, FieldData, FileData} from 'views/Form/typings';
+import {TabTemplate, FieldType, TabDataFromServer, TabFormData, FieldData} from 'views/Form/typings';
 
 interface DataOptions {
     tabId: string;
